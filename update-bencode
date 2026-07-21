@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+REPO_DIR="$(cd "$(dirname "$0")" && pwd)"
+BINARY="$REPO_DIR/packages/opencode/dist/opencode-linux-x64/bin/opencode"
+INSTALL_DIR="$HOME/.local/bin"
+
+echo "=== Pulling latest changes ==="
+git -C "$REPO_DIR" pull
+
+echo ""
+echo "=== Installing dependencies ==="
+bun install --cwd "$REPO_DIR"
+
+echo ""
+echo "=== Building binary ==="
+bun run --cwd "$REPO_DIR/packages/opencode" build --single
+
+echo ""
+echo "=== Installing as bencode ==="
+mkdir -p "$INSTALL_DIR"
+cp "$BINARY" "$INSTALL_DIR/bencode"
+chmod +x "$INSTALL_DIR/bencode"
+
+echo ""
+echo "=== Done ==="
+echo "Installed: $INSTALL_DIR/bencode"
+"$INSTALL_DIR/bencode" --version
