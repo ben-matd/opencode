@@ -70,6 +70,7 @@ import { DialogExportOptions } from "../../ui/dialog-export-options"
 import * as Model from "../../util/model"
 import { formatTranscript } from "../../util/transcript"
 import { sessionEpilogue } from "../../util/presentation"
+import { useAppName } from "../../context/app-name"
 import { setPreLayoutSiblingMargin } from "../../util/layout"
 import { useTuiConfig } from "../../config"
 import { useClipboard } from "../../context/clipboard"
@@ -199,9 +200,10 @@ export function Session() {
     return current ? { directory: current.directory, workspaceID: current.workspaceID } : undefined
   })
 
+  const appName = useAppName()
   createEffect(() => {
     const title = Locale.truncate(session()?.title ?? "", 50)
-    setEpilogue(sessionEpilogue({ title, sessionID: session()?.id }))
+    setEpilogue(sessionEpilogue({ title, sessionID: session()?.id, appName }))
   })
   onCleanup(() => setEpilogue())
   const children = createMemo(() => {
@@ -1011,6 +1013,35 @@ export function Session() {
           }
         } catch {
           toast.show({ message: "Failed to export session", variant: "error" })
+        }
+        dialog.clear()
+      },
+    },
+    {
+      title: "Export session with full model context (JSON)",
+      value: "session.full-export",
+      category: "Session",
+      slash: {
+        name: "full-export",
+      },
+      run: async () => {
+        try {
+          const sessionData = session()
+          if (!sessionData) return
+
+          const defaultFilename = `session-${sessionData.id.slice(0, 8)}-full.json`
+          const { execFile } = await import("node:child_process")
+          const { promisify } = await import("node:util")
+          const execFileAsync = promisify(execFile)
+
+          const { stdout } = await execFileAsync("opencode", ["full-export", sessionData.id])
+
+          const filepath = path.join(paths.cwd, defaultFilename)
+          await writeExport(filepath, stdout)
+
+          toast.show({ message: `Full context exported to ${defaultFilename}`, variant: "success" })
+        } catch {
+          toast.show({ message: "Failed to export full session context", variant: "error" })
         }
         dialog.clear()
       },

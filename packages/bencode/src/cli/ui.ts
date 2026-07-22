@@ -1,12 +1,12 @@
 import { EOL } from "os"
 import { Schema } from "effect"
-import { logo as glyphs } from "./logo"
+import { bencodeLogo as glyphs } from "@opencode-ai/tui/logo"
 
 const wordmark = [
-  `⠀                                ▄     `,
-  `█▀▀█ █▀▀█ █▀▀█ █▀▀▄ █▀▀▀ █▀▀█ █▀▀█ █▀▀█`,
-  `█  █ █  █ █▀▀▀ █  █ █    █  █ █  █ █▀▀▀`,
-  `▀▀▀▀ █▀▀▀ ▀▀▀▀ ▀  ▀ ▀▀▀▀ ▀▀▀▀ ▀▀▀▀ ▀▀▀▀`,
+  `⠀                        ▄     `,
+  `█▀▀▄ █▀▀█ █▀▀▄ █▀▀▀ █▀▀█ █▀▀█ █▀▀█`,
+  `█▀▀▄ █▀▀▀ █  █ █    █  █ █  █ █▀▀▀`,
+  `▀▀▀▀ ▀▀▀▀ ▀  ▀ ▀▀▀▄ ▀▀▀▄ ▀▀▀▄ ▀▀▀▄`,
 ]
 
 export class CancelledError extends Schema.TaggedErrorClass<CancelledError>()("UICancelledError", {}) {}

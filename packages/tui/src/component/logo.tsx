@@ -1,10 +1,13 @@
 import { RGBA, TextAttributes } from "@opentui/core"
 import { For, type JSX } from "solid-js"
 import { tint, useTheme } from "../context/theme"
-import { logo } from "../logo"
+import { useAppName } from "../context/app-name"
+import { selectLogo } from "../logo"
 
 export function Logo() {
   const { theme } = useTheme()
+  const appName = useAppName()
+  const current = selectLogo(appName)
 
   const renderLine = (line: string, fg: RGBA, bold: boolean): JSX.Element[] => {
     const shadow = tint(theme.background, fg, 0.25)
@@ -48,11 +51,11 @@ export function Logo() {
 
   return (
     <box>
-      <For each={logo.left}>
+      <For each={current.left}>
         {(line, index) => (
           <box flexDirection="row" gap={1}>
             <box flexDirection="row">{renderLine(line, theme.textMuted, false)}</box>
-            <box flexDirection="row">{renderLine(logo.right[index()], theme.text, true)}</box>
+            <box flexDirection="row">{renderLine(current.right[index()], theme.text, true)}</box>
           </box>
         )}
       </For>

@@ -40,12 +40,13 @@ type TuiAttentionHost = TuiAttention & {
 
 const DEFAULT_TITLE = "opencode"
 const DEFAULT_PACK_ID = "opencode.default"
+const DEFAULT_PACK_NAME = "OpenCode Default"
 const KV_SOUND_PACK = "attention_sound_pack"
 const TITLE_LIMIT = 80
 const MESSAGE_LIMIT = 240
 const BUILTIN_PACK: RegisteredSoundPack = {
   id: DEFAULT_PACK_ID,
-  name: "OpenCode Default",
+  name: DEFAULT_PACK_NAME,
   builtin: true,
   sounds: {
     default: defaultSoundPath,
@@ -116,11 +117,21 @@ export function createTuiAttention(input: {
   config: Pick<TuiConfig.Resolved, "attention">
   kv?: TuiKV
   audio?: Pick<typeof TuiAudio, "loadSoundFile" | "play">
+  appName?: string
 }): TuiAttentionHost {
+  const appTitle = input.appName ? input.appName.charAt(0).toUpperCase() + input.appName.slice(1) : "opencode"
+  const notifyFallbackTitle = input.appName ?? "opencode"
+  const fallbackPack = input.appName
+    ? {
+        ...BUILTIN_PACK,
+        id: `${input.appName}.default`,
+        name: `${appTitle} Default`,
+      }
+    : undefined
   let focus: FocusState = "unknown"
   let disposed = false
   let activePackID: string | undefined
-  const packs = new Map<string, RegisteredSoundPack>([[BUILTIN_PACK.id, BUILTIN_PACK]])
+  const packs = new Map<string, RegisteredSoundPack>([[BUILTIN_PACK.id, fallbackPack ?? BUILTIN_PACK]])
   const audio = input.audio ?? TuiAudio
 
   const onFocus = () => {
@@ -184,7 +195,7 @@ export function createTuiAttention(input: {
               try {
                 return input.renderer.triggerNotification(
                   message,
-                  normalizeText(request.title, DEFAULT_TITLE, TITLE_LIMIT),
+                  normalizeText(request.title, notifyFallbackTitle, TITLE_LIMIT),
                 )
               } catch (error) {
                 console.debug("failed to trigger attention notification", { error })

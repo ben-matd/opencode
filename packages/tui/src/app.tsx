@@ -81,8 +81,10 @@ import {
 
 import type { EventSource } from "./context/sdk"
 import { DialogVariant } from "./component/dialog-variant"
+import { AppNameProvider, useAppName } from "./context/app-name"
 import { createTuiAttention } from "./attention"
 import * as TuiAudio from "./audio"
+import { displayName, type LogoName } from "./logo"
 import { win32DisableProcessedInput, win32FlushInputBuffer } from "./terminal-win32"
 import { destroyRenderer } from "./util/renderer"
 import { cliErrorMessage, errorFormat } from "./util/error"
@@ -144,6 +146,7 @@ export type TuiInput = {
   args: Args
   config: TuiConfig.Resolved
   onSnapshot?: () => Promise<string[]>
+  appName?: LogoName
   directory?: string
   fetch?: typeof fetch
   headers?: RequestInit["headers"]
@@ -315,11 +318,13 @@ export const run = Effect.fn("Tui.run")(function* (input: TuiInput) {
                                                               <PromptRefProvider>
                                                                 <EditorContextProvider>
                                                                   <LocationProvider>
-                                                                    <App
-                                                                      onSnapshot={input.onSnapshot}
-                                                                      pluginHost={input.pluginHost}
-                                                                    />
-                                                                  </LocationProvider>
+                                                                     <AppNameProvider value={input.appName ?? "opencode"}>
+                                                                       <App
+                                                                         onSnapshot={input.onSnapshot}
+                                                                         pluginHost={input.pluginHost}
+                                                                       />
+                                                                     </AppNameProvider>
+                                                                   </LocationProvider>
                                                                 </EditorContextProvider>
                                                               </PromptRefProvider>
                                                             </PromptHistoryProvider>
@@ -382,7 +387,8 @@ function App(props: { onSnapshot?: () => Promise<string[]>; pluginHost: TuiPlugi
   const exit = useExit()
   const promptRef = usePromptRef()
   const pluginRuntime = usePluginRuntime()
-  const attention = createTuiAttention({ renderer, config: tuiConfig, kv })
+  const appName = useAppName()
+  const attention = createTuiAttention({ renderer, config: tuiConfig, kv, appName })
   const clipboard = useClipboard()
 
   const api = createTuiApi(
@@ -449,29 +455,32 @@ function App(props: { onSnapshot?: () => Promise<string[]>; pluginHost: TuiPlugi
     kv.get("paste_summary_enabled", !sync.data.config.experimental?.disable_paste_summary),
   )
 
+  const appTitle = createMemo(() => displayName(appName))
+  const appPrefix = createMemo(() => appName.slice(0, 2).toUpperCase())
+
   // Update terminal window title based on current route and session
   createEffect(() => {
     if (!terminalTitleEnabled() || Flag.OPENCODE_DISABLE_TERMINAL_TITLE) return
 
     if (route.data.type === "home") {
-      renderer.setTerminalTitle("OpenCode")
+      renderer.setTerminalTitle(appTitle())
       return
     }
 
     if (route.data.type === "session") {
       const session = sync.session.get(route.data.sessionID)
       if (!session || isDefaultTitle(session.title)) {
-        renderer.setTerminalTitle("OpenCode")
+        renderer.setTerminalTitle(appTitle())
         return
       }
 
       const title = session.title.length > 40 ? session.title.slice(0, 37) + "..." : session.title
-      renderer.setTerminalTitle(`OC | ${title}`)
+      renderer.setTerminalTitle(`${appPrefix()} | ${title}`)
       return
     }
 
     if (route.data.type === "plugin") {
-      renderer.setTerminalTitle(`OC | ${route.data.id}`)
+      renderer.setTerminalTitle(`${appPrefix()} | ${route.data.id}`)
     }
   })
 

@@ -284,6 +284,7 @@ export const TuiThreadCommand = cmd({
             fetch: transport.fetch,
             headers: transport.headers,
             events: transport.events,
+            appName: "bencode",
             args: {
               continue: args.continue,
               sessionID: args.session,
