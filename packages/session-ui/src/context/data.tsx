@@ -46,6 +46,12 @@ export const { use: useData, provider: DataProvider } = createSimpleContext({
   init: (props: {
     data: Data
     directory: string
+    /**
+     * Whether to show the code-oriented surface: diffs, shell commands, raw
+     * tool payloads. Defaults to off — the transcript is otherwise a list of
+     * plain-language activity cards.
+     */
+    developer?: () => boolean
     onNavigateToSession?: NavigateToSessionFn
     onSessionHref?: SessionHrefFn
   }) => {
@@ -56,6 +62,7 @@ export const { use: useData, provider: DataProvider } = createSimpleContext({
       get directory() {
         return props.directory
       },
+      developer: () => props.developer?.() ?? false,
       navigateToSession: props.onNavigateToSession,
       sessionHref: props.onSessionHref,
     }

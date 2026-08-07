@@ -466,12 +466,33 @@ function webSearchProviderLabel(provider: unknown) {
   return "Web Search"
 }
 
+/**
+ * Turns a shell command into something a non-developer can read. The exact
+ * command is developer surface; what matters to everyone else is what happened
+ * to their files.
+ */
+function shellActivity(command: unknown) {
+  if (typeof command !== "string") return "ui.tool.shell.generic"
+  const first = command.trim().split(/[\s;&|]+/)[0]?.split("/").pop() ?? ""
+  if (first === "mkdir") return "ui.tool.shell.folder"
+  if (first === "mv" || first === "rename") return "ui.tool.shell.move"
+  if (first === "cp" || first === "rsync") return "ui.tool.shell.copy"
+  if (first === "rm" || first === "rmdir" || first === "trash") return "ui.tool.shell.delete"
+  if (first === "pandoc" || first === "soffice" || first === "libreoffice" || first === "pdftotext")
+    return "ui.tool.shell.convert"
+  if (first.startsWith("python") || first === "pip" || first === "pip3" || first === "node")
+    return "ui.tool.shell.process"
+  return "ui.tool.shell.generic"
+}
+
 export function getToolInfo(
   tool: string,
   input: any = {},
   metadata: Record<string, unknown> | undefined = {},
 ): ToolInfo {
   const i18n = useI18n()
+  const data = useData()
+  const developer = () => data.developer()
   switch (tool) {
     case "read":
       return {
@@ -521,11 +542,11 @@ export function getToolInfo(
       }
     }
     case "bash":
-      return {
-        icon: "console",
-        title: i18n.t("ui.tool.shell"),
-        subtitle: input.command,
-      }
+      // Outside developer mode the command itself never reaches the card — the
+      // person asked for a document, not a shell session.
+      return developer()
+        ? { icon: "console", title: i18n.t("ui.tool.shell"), subtitle: input.command }
+        : { icon: "console", title: i18n.t(shellActivity(input.command)) }
     case "edit":
       return {
         icon: "code-lines",
@@ -533,9 +554,11 @@ export function getToolInfo(
         subtitle: input.filePath ? getFilename(input.filePath) : undefined,
       }
     case "write":
+      // The write tool reports whether the file already existed, so the card can
+      // say which of the two things actually happened.
       return {
         icon: "code-lines",
-        title: i18n.t("ui.messagePart.title.write"),
+        title: i18n.t(metadata?.exists === true ? "ui.tool.write.update" : "ui.messagePart.title.write"),
         subtitle: input.filePath ? getFilename(input.filePath) : undefined,
       }
     case "apply_patch":
@@ -2103,6 +2126,7 @@ ToolRegistry.register({
 ToolRegistry.register({
   name: "bash",
   render(props) {
+    const developer = useData().developer
     const i18n = useI18n()
     const pending = () => props.status === "pending" || props.status === "running"
     const sawPending = pending()
@@ -2130,15 +2154,19 @@ ToolRegistry.register({
           <div data-slot="basic-tool-tool-info-structured">
             <div data-slot="basic-tool-tool-info-main">
               <span data-slot="basic-tool-tool-title">
-                <TextShimmer text={i18n.t("ui.tool.shell")} active={pending()} />
+                <TextShimmer
+                  text={developer() ? i18n.t("ui.tool.shell") : i18n.t(shellActivity(props.input.command))}
+                  active={pending()}
+                />
               </span>
-              <Show when={!pending() && !open() && props.input.command}>
+              <Show when={developer() && !pending() && !open() && props.input.command}>
                 <ShellSubmessage text={props.input.command} animate={sawPending} />
               </Show>
             </div>
           </div>
         )}
       >
+        <Show when={developer()}>
         <div data-component="bash-output">
           <div data-slot="bash-copy">
             <TooltipV2 value={copied() ? i18n.t("ui.message.copied") : i18n.t("ui.message.copy")} placement="top">
@@ -2164,6 +2192,7 @@ ToolRegistry.register({
             </pre>
           </div>
         </div>
+        </Show>
       </BasicTool>
     )
   },
@@ -2172,6 +2201,7 @@ ToolRegistry.register({
 ToolRegistry.register({
   name: "edit",
   render(props) {
+    const developer = useData().developer
     const i18n = useI18n()
     const fileComponent = useFileComponent()
     const diagnostics = createMemo(() => getDiagnostics(props.metadata.diagnostics, props.input.filePath))
@@ -2241,14 +2271,14 @@ ToolRegistry.register({
                 </Show>
               </div>
               <div data-slot="message-part-actions">
-                <Show when={!pending() && props.metadata.filediff}>
+                <Show when={developer() && !pending() && props.metadata.filediff}>
                   <DiffChanges changes={props.metadata.filediff} />
                 </Show>
               </div>
             </div>
           }
         >
-          <Show when={path()}>
+          <Show when={developer() && path()}>
             <ToolFileAccordion
               path={path()}
               actions={
@@ -2278,6 +2308,7 @@ ToolRegistry.register({
 ToolRegistry.register({
   name: "write",
   render(props) {
+    const developer = useData().developer
     const i18n = useI18n()
     const fileComponent = useFileComponent()
     const diagnostics = createMemo(() => getDiagnostics(props.metadata.diagnostics, props.input.filePath))
@@ -2295,7 +2326,12 @@ ToolRegistry.register({
               <div data-slot="message-part-title-area">
                 <div data-slot="message-part-title">
                   <span data-slot="message-part-title-text">
-                    <TextShimmer text={i18n.t("ui.messagePart.title.write")} active={pending()} />
+                    <TextShimmer
+                      text={i18n.t(
+                        props.metadata.exists === true ? "ui.tool.write.update" : "ui.messagePart.title.write",
+                      )}
+                      active={pending()}
+                    />
                   </span>
                   <Show when={!pending()}>
                     <span data-slot="message-part-title-filename">{filename()}</span>
@@ -2311,7 +2347,7 @@ ToolRegistry.register({
             </div>
           }
         >
-          <Show when={props.input.content && path()}>
+          <Show when={developer() && props.input.content && path()}>
             <ToolFileAccordion path={path()}>
               <div data-component="write-content">
                 <Dynamic
