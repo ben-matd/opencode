@@ -166,6 +166,10 @@ export const Info = Schema.Struct({
       }),
     }),
   ),
+  developer_mode: Schema.optional(Schema.Boolean).annotate({
+    description:
+      "Enable developer-oriented behavior: the software-engineering system prompt, language-server diagnostics, version-control surfacing, and diff views. Off by default; the app is a knowledge-work assistant.",
+  }),
   experimental: Schema.optional(
     Schema.Struct({
       disable_paste_summary: Schema.optional(Schema.Boolean),

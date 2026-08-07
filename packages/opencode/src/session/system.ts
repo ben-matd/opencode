@@ -13,6 +13,7 @@ import PROMPT_META from "./prompt/meta.txt"
 
 import PROMPT_CODEX from "./prompt/codex.txt"
 import PROMPT_TRINITY from "./prompt/trinity.txt"
+import PROMPT_COWORK from "./prompt/cowork.txt"
 import type { Provider } from "@/provider/provider"
 import type { Agent } from "@/agent/agent"
 import { Permission } from "@/permission"
@@ -24,7 +25,15 @@ import { Reference } from "@opencode-ai/core/reference"
 import { MCP } from "@/mcp"
 import { PermissionV1 } from "@opencode-ai/core/v1/permission"
 
-export function provider(model: Provider.Model) {
+/**
+ * Selects the base system prompt.
+ *
+ * The product is a knowledge-work assistant, so the default identity is Cowork
+ * regardless of model family. The per-model software-engineering prompts are
+ * retained and reachable by turning on `developer_mode` in config.
+ */
+export function provider(model: Provider.Model, developerMode = false) {
+  if (!developerMode) return [PROMPT_COWORK]
   if (model.api.id.includes("muse-spark")) return [PROMPT_META]
   if (model.api.id.includes("gpt-4") || model.api.id.includes("o1") || model.api.id.includes("o3"))
     return [PROMPT_BEAST]

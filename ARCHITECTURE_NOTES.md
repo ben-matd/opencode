@@ -380,10 +380,18 @@ The rename target (Phase 1.2) is concentrated, which is good news:
 
 ## 9. Build / verification commands
 
+Toolchain: Bun `1.3.14` (pinned by root `packageManager`). `bun install` at the
+repo root installs every workspace.
+
+Note: `bun --cwd <pkg> run typecheck` does not run the script — it prints the
+script list. Run from inside the package directory instead.
+
 ```
-bun --cwd packages/app run typecheck        # UI typecheck   (baseline: passes)
-bun --cwd packages/desktop run typecheck    # electron typecheck
-bun --cwd packages/desktop run build        # electron-vite build
+cd packages/opencode && bun run typecheck   # engine typecheck
+cd packages/core     && bun run typecheck   # v2 engine typecheck
+cd packages/app      && bun run typecheck   # UI typecheck
+cd packages/desktop  && bun run typecheck   # electron typecheck
+cd packages/desktop  && bun run build       # electron-vite build
 bun turbo typecheck                         # everything
 bun run lint                                # oxlint
 bun run dev:desktop                         # run the desktop app
