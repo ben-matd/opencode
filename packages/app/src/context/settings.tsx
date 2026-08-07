@@ -34,6 +34,7 @@ export interface Settings {
     editToolPartsExpanded: boolean
     showCustomAgents: boolean
     developerMode: boolean
+    welcomeCompleted: boolean
     mobileTitlebarPosition: "top" | "bottom"
     newLayoutDesigns?: boolean
     layoutTransitionEligible?: boolean
@@ -186,6 +187,7 @@ const defaultSettings: Settings = {
     editToolPartsExpanded: false,
     showCustomAgents: false,
     developerMode: false,
+    welcomeCompleted: false,
     mobileTitlebarPosition: "top",
   },
   appearance: {
@@ -405,6 +407,13 @@ export const { use: useSettings, provider: SettingsProvider } = createSimpleCont
         developerMode,
         setDeveloperMode(value: boolean) {
           setStore("general", "developerMode", value)
+        },
+        welcomeCompleted: withFallback(
+          () => store.general?.welcomeCompleted,
+          defaultSettings.general.welcomeCompleted,
+        ),
+        setWelcomeCompleted(value: boolean) {
+          setStore("general", "welcomeCompleted", value)
         },
         mobileTitlebarPosition: withFallback(
           () => store.general?.mobileTitlebarPosition,

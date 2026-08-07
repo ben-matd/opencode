@@ -42,6 +42,8 @@ import { DateTime } from "luxon"
 import { useDialog } from "@opencode-ai/ui/context/dialog"
 import { useDirectoryPicker } from "@/components/directory-picker"
 import { useSettingsCommand } from "@/components/settings-dialog"
+import { Welcome } from "@/pages/welcome"
+import { useSettings } from "@/context/settings"
 import { DialogSelectServer, useServerManagementController } from "@/components/dialog-select-server"
 import { DialogServerV2 } from "@/components/settings-v2/dialog-server-v2"
 import { ServerConnection, serverName, useServer } from "@/context/server"
@@ -307,6 +309,14 @@ export function NewHome() {
   const notification = useNotification()
   const marked = useMarked()
   const openSettings = useSettingsCommand()
+  const settings = useSettings()
+
+  // First run is decided once, as soon as the server has reported what it
+  // knows: someone with folders already open has been here before and should
+  // land on the normal home screen, not onboarding.
+  const [welcomeDecided, setWelcomeDecided] = createSignal(false)
+  const [showWelcome, setShowWelcome] = createSignal(false)
+  const welcomeServer = createMemo(() => focusedServer() ?? global.servers.list()[0])
   let focusSessionSearch: (() => void) | undefined
   let sessionViewport: HTMLDivElement | undefined
   const [sessionThumbTrack, setSessionThumbTrack] = createSignal<HTMLDivElement>()
@@ -622,6 +632,18 @@ export function NewHome() {
     })
   }
 
+  createEffect(() => {
+    if (welcomeDecided()) return
+    if (!sync().ready) return
+    setWelcomeDecided(true)
+    if (settings.general.welcomeCompleted()) return
+    if (projects().length > 0 || recentlyClosed().length > 0) {
+      settings.general.setWelcomeCompleted(true)
+      return
+    }
+    setShowWelcome(true)
+  })
+
   function chooseProject(conn: ServerConnection.Any) {
     if (global.servers.health[ServerConnection.key(conn)]?.healthy === false) return
 
@@ -637,7 +659,7 @@ export function NewHome() {
     })
   }
 
-  return (
+  const homeView = () => (
     <div class="rounded-[10px] shadow-[var(--v2-elevation-raised)] m-2 min-h-0 overflow-hidden bg-v2-background-bg-base self-stretch flex-1">
       <ScrollView
         class="h-full [container-type:size]"
@@ -791,6 +813,24 @@ export function NewHome() {
         </div>
       </ScrollView>
     </div>
+  )
+
+  return (
+    <Show when={showWelcome() && welcomeServer()} fallback={homeView()} keyed>
+      {(conn) => (
+        <div class="rounded-[10px] shadow-[var(--v2-elevation-raised)] m-2 min-h-0 overflow-hidden bg-v2-background-bg-base self-stretch flex-1">
+          <Welcome
+            server={conn}
+            workspaces={() => projects().map((project) => project.worktree)}
+            onChoose={(directories) => addProjects(conn, directories)}
+            onDone={() => {
+              settings.general.setWelcomeCompleted(true)
+              setShowWelcome(false)
+            }}
+          />
+        </div>
+      )}
+    </Show>
   )
 }
 

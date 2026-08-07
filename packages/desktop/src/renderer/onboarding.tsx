@@ -22,7 +22,7 @@ export function DesktopFirstLaunchOnboarding(props: { initialUrl: string; onLoad
       const pending = await window.api.isFirstLaunchOnboardingPending()
       if (!pending) return
 
-      const shouldTrigger =
+      const firstLaunch =
         !existingInstall &&
         props.initialUrl === "/" &&
         tabs.store.length === 0 &&
@@ -30,20 +30,18 @@ export function DesktopFirstLaunchOnboarding(props: { initialUrl: string; onLoad
 
       console.info("[desktop-onboarding] first launch onboarding evaluated", {
         pending,
-        shouldTrigger,
+        firstLaunch,
         existingInstall,
         initialUrl: props.initialUrl,
         tabs: tabs.store.length,
         servers: server.list.map(ServerConnection.key),
       })
 
-      const directory = await window.api.finishFirstLaunchOnboarding(shouldTrigger)
-      if (!shouldTrigger || !directory) return
-
-      console.info("[desktop-onboarding] starting first launch draft", { directory })
-      server.projects.open(directory)
-      server.projects.touch(directory)
-      tabs.select(await tabs.newDraft({ server: server.key, directory }))
+      // Mark onboarding done but never conjure a folder. A first-run person now
+      // lands on the Welcome screen and chooses their own folder to work in;
+      // silently creating "Default Project" in Documents would both preempt that
+      // choice and leave a stray folder behind.
+      await window.api.finishFirstLaunchOnboarding(false)
     } catch (error) {
       console.error("[desktop-onboarding] first launch onboarding failed", error)
     }

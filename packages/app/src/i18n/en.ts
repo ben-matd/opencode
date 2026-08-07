@@ -612,6 +612,23 @@ export const dict = {
   "notification.session.error.title": "Conversation error",
   "notification.session.error.fallbackDescription": "An error occurred",
 
+  "welcome.title": "Welcome to Cowork",
+  "welcome.subtitle":
+    "Cowork reads, writes, and organizes the files in a folder you choose, and gives you back finished documents. Two quick things before you start.",
+  "welcome.folder.title": "Choose a folder to work in",
+  "welcome.folder.description":
+    "Pick the folder holding the files you want to work on. Cowork only touches what is inside it, and puts anything it finishes in a Deliverables folder there. You can add more folders later.",
+  "welcome.folder.action": "Choose a folder",
+  "welcome.folder.actionAgain": "Choose another folder",
+  "welcome.provider.title": "Connect an AI service",
+  "welcome.provider.description":
+    "Cowork needs an account with an AI service to do the thinking. Sign in, or paste a key from the service you already pay for. It is stored on this computer and nowhere else.",
+  "welcome.provider.action": "Connect a service",
+  "welcome.provider.actionAgain": "Connect another service",
+  "welcome.provider.connected": "Connected to {{names}}",
+  "welcome.start": "Start working",
+  "welcome.start.blocked": "Finish both steps above to continue",
+
   "home.recentProjects": "Recent workspaces",
   "home.empty.title": "No recent workspaces",
   "home.empty.description": "Get started by choosing a folder to work in",
