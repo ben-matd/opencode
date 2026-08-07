@@ -110,7 +110,8 @@ export function SessionSidePanel(props: {
       }),
   )
   const open = createMemo(() => reviewOpen() || fileOpen())
-  const reviewTab = createMemo(() => isDesktop())
+  // The review tab is a diff view over version control — developer surface.
+  const reviewTab = createMemo(() => isDesktop() && settings.visibility.developer())
   const panelWidth = createMemo(() => {
     if (!open()) return "0px"
     if (reviewOpen()) return "auto"

@@ -14,6 +14,8 @@ import DESCRIPTION from "./apply_patch.txt"
 import { FileSystem } from "@opencode-ai/core/filesystem"
 import { Format } from "../format"
 import * as Bom from "@/util/bom"
+import { developerMode } from "@/config/developer-mode"
+import { Config } from "@/config/config"
 
 export const Parameters = Schema.Struct({
   patchText: Schema.String.annotate({ description: "The full patch text that describes all changes to be made" }),
@@ -23,6 +25,7 @@ export const ApplyPatchTool = Tool.define(
   "apply_patch",
   Effect.gen(function* () {
     const lsp = yield* LSP.Service
+    const config = yield* Config.Service
     const afs = yield* FSUtil.Service
     const format = yield* Format.Service
     const events = yield* EventV2Bridge.Service
@@ -262,13 +265,17 @@ export const ApplyPatchTool = Tool.define(
         yield* events.publish(Watcher.Event.Updated, update)
       }
 
-      // Notify LSP of file changes and collect diagnostics
-      for (const change of fileChanges) {
-        if (change.type === "delete") continue
-        const target = change.movePath ?? change.filePath
-        yield* lsp.touchFile(target, "document")
-      }
-      const diagnostics = yield* lsp.diagnostics()
+      // Notify LSP of file changes and collect diagnostics.
+      // See write.ts: language-server errors are developer-mode only.
+      const diagnostics = yield* Effect.gen(function* () {
+        if (!(yield* developerMode(config))) return {}
+        for (const change of fileChanges) {
+          if (change.type === "delete") continue
+          const target = change.movePath ?? change.filePath
+          yield* lsp.touchFile(target, "document")
+        }
+        return yield* lsp.diagnostics()
+      })
 
       // Generate output summary
       const summaryLines = fileChanges.map((change) => {

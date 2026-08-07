@@ -33,6 +33,7 @@ export interface Settings {
     shellToolPartsExpanded: boolean
     editToolPartsExpanded: boolean
     showCustomAgents: boolean
+    developerMode: boolean
     mobileTitlebarPosition: "top" | "bottom"
     newLayoutDesigns?: boolean
     layoutTransitionEligible?: boolean
@@ -184,6 +185,7 @@ const defaultSettings: Settings = {
     shellToolPartsExpanded: false,
     editToolPartsExpanded: false,
     showCustomAgents: false,
+    developerMode: false,
     mobileTitlebarPosition: "top",
   },
   appearance: {
@@ -237,6 +239,10 @@ export const { use: useSettings, provider: SettingsProvider } = createSimpleCont
       () => store.general?.showCustomAgents,
       defaultSettings.general.showCustomAgents,
     )
+    // Developer mode brings back the coding-tool surface: diffs, the review
+    // tab, the terminal, and raw tool names. Off by default — see the
+    // `developer_mode` config flag on the engine side, which it mirrors.
+    const developerMode = withFallback(() => store.general?.developerMode, defaultSettings.general.developerMode)
     const sunset = oldInterfaceSunset
     const [oldInterfaceRetired, setOldInterfaceRetired] = createSignal(sunset ? Date.now() >= sunset.getTime() : false)
     const layoutTransitionClassified = createMemo(() => typeof store.general?.layoutTransitionEligible === "boolean")
@@ -396,6 +402,10 @@ export const { use: useSettings, provider: SettingsProvider } = createSimpleCont
         setShowCustomAgents(value: boolean) {
           setStore("general", "showCustomAgents", value)
         },
+        developerMode,
+        setDeveloperMode(value: boolean) {
+          setStore("general", "developerMode", value)
+        },
         mobileTitlebarPosition: withFallback(
           () => store.general?.mobileTitlebarPosition,
           defaultSettings.general.mobileTitlebarPosition,
@@ -431,6 +441,9 @@ export const { use: useSettings, provider: SettingsProvider } = createSimpleCont
         search: visible(showSearch),
         status: visible(showStatus),
         customAgents: visible(showCustomAgents),
+        // Not wrapped in visible(): developer mode is an explicit opt-in in
+        // every layout, not something the legacy layout forces on.
+        developer: developerMode,
       },
       appearance: {
         fontSize: withFallback(() => store.appearance?.fontSize, defaultSettings.appearance.fontSize),

@@ -34,14 +34,14 @@ the person plainly which format you produced instead and why.
 
 ## Choosing the format
 
-| The person asked for | Produce |
-| --- | --- |
-| a report, a memo, a letter, "a document" | `.docx` |
-| notes, an outline, something to paste elsewhere | `.md` |
+| The person asked for                                  | Produce |
+| ----------------------------------------------------- | ------- |
+| a report, a memo, a letter, "a document"              | `.docx` |
+| notes, an outline, something to paste elsewhere       | `.md`   |
 | a table, a budget, a list of records, "a spreadsheet" | `.xlsx` |
-| data for another program to read | `.csv` |
-| slides, a deck | `.pptx` |
-| something to send, sign, or print | `.pdf` |
+| data for another program to read                      | `.csv`  |
+| slides, a deck                                        | `.pptx` |
+| something to send, sign, or print                     | `.pdf`  |
 
 When in doubt for prose, write `.docx`. When in doubt for data, write `.xlsx`.
 

@@ -96,6 +96,19 @@ export const SettingsGeneralV2: Component<{
 
   const updater = useUpdaterAction()
 
+  // Developer mode is one switch with two homes: the local UI preference
+  // decides what this app renders, and `developer_mode` in the engine config
+  // decides which system prompt and which tool behavior the agent gets. Write
+  // both so they can never disagree.
+  const setDeveloperMode = (checked: boolean) => {
+    settings.general.setDeveloperMode(checked)
+    void serverSync()
+      .updateConfig({ developer_mode: checked })
+      .catch((error: unknown) => {
+        console.error("[settings] failed to persist developer mode to config", error)
+      })
+  }
+
   const dir = createMemo(() => {
     if (!props.sessionID) return undefined
     return serverSync().session.lineage.peek(props.sessionID)?.session.directory
@@ -404,6 +417,18 @@ export const SettingsGeneralV2: Component<{
             <Switch
               checked={settings.general.showCustomAgents()}
               onChange={(checked) => settings.general.setShowCustomAgents(checked)}
+            />
+          </div>
+        </SettingsRowV2>
+
+        <SettingsRowV2
+          title={language.t("settings.general.row.developerMode.title")}
+          description={language.t("settings.general.row.developerMode.description")}
+        >
+          <div data-action="settings-developer-mode">
+            <Switch
+              checked={settings.general.developerMode()}
+              onChange={(checked) => setDeveloperMode(checked)}
             />
           </div>
         </SettingsRowV2>

@@ -5,6 +5,7 @@ import path from "path"
 import fs from "fs/promises"
 import { WriteTool } from "../../src/tool/write"
 import { LSP } from "@/lsp/lsp"
+import { Config } from "@/config/config"
 import { FSUtil } from "@opencode-ai/core/fs-util"
 import { EventV2Bridge } from "../../src/event-v2-bridge"
 import { Format } from "../../src/format"
@@ -35,6 +36,7 @@ const it = testEffect(
   LayerNode.compile(
     LayerNode.group([
       LSP.node,
+      Config.node,
       FSUtil.node,
       EventV2Bridge.node,
       Format.node,

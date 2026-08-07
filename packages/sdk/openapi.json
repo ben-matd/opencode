@@ -21505,6 +21505,9 @@
             },
             "additionalProperties": false
           },
+          "developer_mode": {
+            "type": "boolean"
+          },
           "experimental": {
             "type": "object",
             "properties": {

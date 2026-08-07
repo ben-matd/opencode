@@ -6,17 +6,17 @@ from this document. Written before any code changes.
 Repo layout is a Bun/Turbo monorepo under `packages/`. The pieces that matter for
 this transformation are:
 
-| Package | Role |
-| --- | --- |
-| `packages/opencode` | **v1 engine** — the actual server that ships. Agent loop, tools, prompts, LSP, MCP, permissions, HTTP API, CLI. |
-| `packages/core` | **v2 engine (in-progress port)** — Effect-based services: location, project, session, tools, permissions, system-context. Partially wired; v1 imports from it via `@opencode-ai/core`. |
-| `packages/app` | **Web/desktop UI** (SolidJS + Vite). Routes, pages, dialogs, contexts, i18n. This is the product surface. |
-| `packages/session-ui` | Shared chat-transcript rendering: message parts, tool cards, markdown, diffs. |
-| `packages/ui` | Design-system primitives (buttons, icons, theme, dialog context). |
-| `packages/desktop` | Electron shell — main/preload/renderer. Spawns the engine as a sidecar and loads `packages/app`. |
-| `packages/tui` | Terminal UI. **Not part of the desktop app UX**; stays in repo. |
-| `packages/schema` | Shared Effect `Schema` definitions (`@opencode-ai/schema`) used by engine + UI. |
-| `packages/sdk`, `packages/client` | Generated/typed HTTP clients. |
+| Package                           | Role                                                                                                                                                                                   |
+| --------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `packages/opencode`               | **v1 engine** — the actual server that ships. Agent loop, tools, prompts, LSP, MCP, permissions, HTTP API, CLI.                                                                        |
+| `packages/core`                   | **v2 engine (in-progress port)** — Effect-based services: location, project, session, tools, permissions, system-context. Partially wired; v1 imports from it via `@opencode-ai/core`. |
+| `packages/app`                    | **Web/desktop UI** (SolidJS + Vite). Routes, pages, dialogs, contexts, i18n. This is the product surface.                                                                              |
+| `packages/session-ui`             | Shared chat-transcript rendering: message parts, tool cards, markdown, diffs.                                                                                                          |
+| `packages/ui`                     | Design-system primitives (buttons, icons, theme, dialog context).                                                                                                                      |
+| `packages/desktop`                | Electron shell — main/preload/renderer. Spawns the engine as a sidecar and loads `packages/app`.                                                                                       |
+| `packages/tui`                    | Terminal UI. **Not part of the desktop app UX**; stays in repo.                                                                                                                        |
+| `packages/schema`                 | Shared Effect `Schema` definitions (`@opencode-ai/schema`) used by engine + UI.                                                                                                        |
+| `packages/sdk`, `packages/client` | Generated/typed HTTP clients.                                                                                                                                                          |
 
 ---
 
@@ -194,11 +194,15 @@ Sub-agent prompts live in `packages/opencode/src/agent/prompt/`:
 `packages/opencode/src/session/llm/request.ts::prepare()` — line 58ff:
 
 ```ts
-const system = [[
-  ...(input.agent.prompt ? [input.agent.prompt] : SystemPrompt.provider(input.model)),
-  ...input.system,                       // environment, skills, mcp instructions
-  ...(input.user.system ? [input.user.system] : []),
-].filter(Boolean).join("\n")]
+const system = [
+  [
+    ...(input.agent.prompt ? [input.agent.prompt] : SystemPrompt.provider(input.model)),
+    ...input.system, // environment, skills, mcp instructions
+    ...(input.user.system ? [input.user.system] : []),
+  ]
+    .filter(Boolean)
+    .join("\n"),
+]
 ```
 
 Two clean override points, in increasing invasiveness:
@@ -239,7 +243,7 @@ There is also a plugin hook: `experimental.chat.system.transform`
   v2 service + persistence of "always allow" rules.
 - Schemas: `packages/schema/src/permission.ts`, `permission-v1.ts`,
   `permission-saved.ts`. A request carries `{ id, sessionID, permission,
-  patterns, ... }`; the reply is `once` / `always` / `reject`.
+patterns, ... }`; the reply is `once` / `always` / `reject`.
 - Rulesets come from agent config + `config.permission`
   (`packages/core/src/v1/config/permission.ts`).
 
@@ -312,21 +316,21 @@ project directory — directly reusable for "writes outside the workspace"
 
 ### 6.1 Coding-specific — gate behind `developerMode`, do not delete
 
-| Area | Location |
-| --- | --- |
-| LSP client/servers/diagnostics | `packages/opencode/src/lsp/` (`client.ts`, `diagnostic.ts`, `language.ts`, `launch.ts`, `server.ts`), `config/lsp.ts` |
-| Diagnostics appended to tool output | `tool/edit.ts:192-205`, `tool/write.ts:76-79`, `tool/apply_patch.ts:265-300` |
-| `lsp` tool | `tool/lsp.ts` (already flag-gated) |
-| Git / VCS | `packages/core/src/git.ts`, `project.ts` (`vcs`), `packages/opencode/src/git/`, `worktree/` |
-| Git surfacing in UI | `pages/session.tsx`, `pages/layout.tsx`, `pages/layout/sidebar-workspace.tsx`, `pages/layout/sidebar-project.tsx`, `context/global-sync/*`, `components/session/session-new-view.tsx` (`session.review.noVcs.createGit.*` strings) |
-| Diff / review views | `session-ui/src/pierre/**`, `session-ui/src/components/session-diff.ts`, `session-review.tsx`, `line-comment*.tsx`, `app/src/pages/session/review-tab.tsx` |
-| Syntax highlighting | `session-ui/src/components/markdown-shiki.worker.ts` + `markdown-worker*` (keep for code blocks, but code blocks stop being the deliverable) |
-| Terminal | `app/src/components/terminal.tsx`, `pages/session/terminal-panel*.tsx`, `packages/core/src/pty/` |
-| Formatters / lint | `packages/opencode/src/format/`, `config/formatter.ts` |
-| `<env>` git line | `session/system.ts:71`, `core/src/system-context/builtins.ts:21` |
-| Code mode | `tool/code-mode.ts` (behind `experimentalCodeMode`) |
-| Coding prompts | `session/prompt/*.txt` |
-| TUI | `packages/tui/**`, `packages/opencode/src/cli/tui/`, `cli/cmd/tui.ts` |
+| Area                                | Location                                                                                                                                                                                                                           |
+| ----------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| LSP client/servers/diagnostics      | `packages/opencode/src/lsp/` (`client.ts`, `diagnostic.ts`, `language.ts`, `launch.ts`, `server.ts`), `config/lsp.ts`                                                                                                              |
+| Diagnostics appended to tool output | `tool/edit.ts:192-205`, `tool/write.ts:76-79`, `tool/apply_patch.ts:265-300`                                                                                                                                                       |
+| `lsp` tool                          | `tool/lsp.ts` (already flag-gated)                                                                                                                                                                                                 |
+| Git / VCS                           | `packages/core/src/git.ts`, `project.ts` (`vcs`), `packages/opencode/src/git/`, `worktree/`                                                                                                                                        |
+| Git surfacing in UI                 | `pages/session.tsx`, `pages/layout.tsx`, `pages/layout/sidebar-workspace.tsx`, `pages/layout/sidebar-project.tsx`, `context/global-sync/*`, `components/session/session-new-view.tsx` (`session.review.noVcs.createGit.*` strings) |
+| Diff / review views                 | `session-ui/src/pierre/**`, `session-ui/src/components/session-diff.ts`, `session-review.tsx`, `line-comment*.tsx`, `app/src/pages/session/review-tab.tsx`                                                                         |
+| Syntax highlighting                 | `session-ui/src/components/markdown-shiki.worker.ts` + `markdown-worker*` (keep for code blocks, but code blocks stop being the deliverable)                                                                                       |
+| Terminal                            | `app/src/components/terminal.tsx`, `pages/session/terminal-panel*.tsx`, `packages/core/src/pty/`                                                                                                                                   |
+| Formatters / lint                   | `packages/opencode/src/format/`, `config/formatter.ts`                                                                                                                                                                             |
+| `<env>` git line                    | `session/system.ts:71`, `core/src/system-context/builtins.ts:21`                                                                                                                                                                   |
+| Code mode                           | `tool/code-mode.ts` (behind `experimentalCodeMode`)                                                                                                                                                                                |
+| Coding prompts                      | `session/prompt/*.txt`                                                                                                                                                                                                             |
+| TUI                                 | `packages/tui/**`, `packages/opencode/src/cli/tui/`, `cli/cmd/tui.ts`                                                                                                                                                              |
 
 ### 6.2 Generic agent infrastructure — keep as is
 
@@ -354,7 +358,7 @@ The rename target (Phase 1.2) is concentrated, which is good news:
 - A `workspace` vocabulary **already exists** in the codebase
   (`command.category.workspace`, `pages/layout/sidebar-workspace.tsx`,
   `components/prompt-workspace-selector.tsx`, `packages/core/src/workspace.ts`,
-  `experimentalWorkspaces` flag) but there it means *git worktree*. Phase 1.2
+  `experimentalWorkspaces` flag) but there it means _git worktree_. Phase 1.2
   must resolve that collision: user-facing "workspace" = the folder; the git
   worktree concept moves behind developer mode.
 - Internal identifiers (`Project.Service`, `projectID`, DB columns, HTTP routes)
@@ -405,17 +409,17 @@ thorough one.
 
 ## 10. Plan-to-location map
 
-| Phase | Primary files |
-| --- | --- |
-| 1.1 system prompt | new `packages/opencode/src/session/prompt/cowork.txt`; `session/system.ts`; or agent `prompt` in `agent/agent.ts` (§3.2) |
-| 1.2 project→workspace | `packages/app/src/i18n/*.ts`, `packages/desktop/src/renderer/i18n/*.ts` (§7) |
-| 1.3 document tooling | `packages/opencode/src/tool/registry.ts` + new tool + `.txt` description (§1.3) |
-| 1.4 developerMode | `packages/core/src/v1/config/config.ts`, `runtime-flags.ts`, `tool/edit.ts`/`write.ts`/`apply_patch.ts`, `session/system.ts` (§5.1, §6.1) |
-| 2.1 onboarding | `packages/desktop/src/renderer/onboarding.tsx`, `main/onboarding.ts`, `main/ipc.ts`, `components/dialog-connect-provider.tsx` (§2.2) |
-| 2.2 layout + file tree | `pages/layout-new.tsx`, `pages/session.tsx`, `components/file-tree-v2.tsx` (§2.2) |
-| 2.3 activity cards | `session-ui/src/components/message-part.tsx::getToolInfo` (§2.3) |
-| 2.4 artifact previews | `message-part.tsx`, `session-ui/src/components/file*.tsx`, desktop IPC for open/reveal (§2.1) |
-| 2.5 permissions UI | `app/src/context/permission.tsx`, `permission-auto-respond.ts`, engine defaults in config permission ruleset (§4) |
-| 2.6 tasks/templates | `pages/new-session.tsx`, `pages/home.tsx`, `components/prompt-input*` |
-| 2.7 rebrand | §8 |
-| 3 polish | `pages/home.tsx` (history), `pages/error-description.ts`, `README.md` |
+| Phase                  | Primary files                                                                                                                             |
+| ---------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| 1.1 system prompt      | new `packages/opencode/src/session/prompt/cowork.txt`; `session/system.ts`; or agent `prompt` in `agent/agent.ts` (§3.2)                  |
+| 1.2 project→workspace  | `packages/app/src/i18n/*.ts`, `packages/desktop/src/renderer/i18n/*.ts` (§7)                                                              |
+| 1.3 document tooling   | `packages/opencode/src/tool/registry.ts` + new tool + `.txt` description (§1.3)                                                           |
+| 1.4 developerMode      | `packages/core/src/v1/config/config.ts`, `runtime-flags.ts`, `tool/edit.ts`/`write.ts`/`apply_patch.ts`, `session/system.ts` (§5.1, §6.1) |
+| 2.1 onboarding         | `packages/desktop/src/renderer/onboarding.tsx`, `main/onboarding.ts`, `main/ipc.ts`, `components/dialog-connect-provider.tsx` (§2.2)      |
+| 2.2 layout + file tree | `pages/layout-new.tsx`, `pages/session.tsx`, `components/file-tree-v2.tsx` (§2.2)                                                         |
+| 2.3 activity cards     | `session-ui/src/components/message-part.tsx::getToolInfo` (§2.3)                                                                          |
+| 2.4 artifact previews  | `message-part.tsx`, `session-ui/src/components/file*.tsx`, desktop IPC for open/reveal (§2.1)                                             |
+| 2.5 permissions UI     | `app/src/context/permission.tsx`, `permission-auto-respond.ts`, engine defaults in config permission ruleset (§4)                         |
+| 2.6 tasks/templates    | `pages/new-session.tsx`, `pages/home.tsx`, `components/prompt-input*`                                                                     |
+| 2.7 rebrand            | §8                                                                                                                                        |
+| 3 polish               | `pages/home.tsx` (history), `pages/error-description.ts`, `README.md`                                                                     |

@@ -2014,6 +2014,7 @@ export type Config = {
     preserve_recent_tokens?: number
     reserved?: number
   }
+  developer_mode?: boolean
   experimental?: {
     disable_paste_summary?: boolean
     batch_tool?: boolean

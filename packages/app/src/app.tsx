@@ -162,13 +162,34 @@ function LegacyTargetSessionRedirect() {
   return null
 }
 
+// The engine config is the source of truth for developer mode — it is what the
+// agent itself reads, and it can be edited by hand outside the app. Mirror it
+// into the local UI preference so the rendered surface never disagrees with the
+// agent's behavior.
+function DeveloperModeSync() {
+  const sync = useServerSync()
+  const settings = useSettings()
+
+  createEffect(() => {
+    const configured = sync().data.config.developer_mode
+    if (configured === undefined) return
+    if (settings.general.developerMode() === configured) return
+    settings.general.setDeveloperMode(configured)
+  })
+
+  return null
+}
+
 // Wraps the non-draft routes. They are gated on (and keyed to) the globally selected
 // server via ServerKey, then provide the server-scoped shell for that server.
 function SelectedServerProviders(props: ParentProps) {
   return (
     <ServerKey>
       <ServerSDKProvider>
-        <ServerSyncProvider>{props.children}</ServerSyncProvider>
+        <ServerSyncProvider>
+          <DeveloperModeSync />
+          {props.children}
+        </ServerSyncProvider>
       </ServerSDKProvider>
     </ServerKey>
   )

@@ -13,6 +13,8 @@ import { FSUtil } from "@opencode-ai/core/fs-util"
 import { InstanceState } from "@/effect/instance-state"
 import { trimDiff } from "./edit"
 import { assertExternalDirectoryEffect } from "./external-directory"
+import { developerMode } from "@/config/developer-mode"
+import { Config } from "@/config/config"
 import * as Bom from "@/util/bom"
 
 const MAX_PROJECT_DIAGNOSTICS_FILES = 5
@@ -28,6 +30,7 @@ export const WriteTool = Tool.define(
   "write",
   Effect.gen(function* () {
     const lsp = yield* LSP.Service
+    const config = yield* Config.Service
     const fs = yield* FSUtil.Service
     const events = yield* EventV2Bridge.Service
     const format = yield* Format.Service
@@ -72,21 +75,28 @@ export const WriteTool = Tool.define(
           })
 
           let output = "Wrote file successfully."
-          yield* lsp.touchFile(filepath, "document")
-          const diagnostics = yield* lsp.diagnostics()
-          const normalizedFilepath = FSUtil.normalizePath(filepath)
-          let projectDiagnosticsCount = 0
-          for (const [file, issues] of Object.entries(diagnostics)) {
-            const current = file === normalizedFilepath
-            if (!current && projectDiagnosticsCount >= MAX_PROJECT_DIAGNOSTICS_FILES) continue
-            const block = LSP.Diagnostic.report(current ? filepath : file, issues)
-            if (!block) continue
-            if (current) {
-              output += `\n\nLSP errors detected in this file, please fix:\n${block}`
-              continue
+          // Language-server errors only mean something to a developer, so they
+          // are gathered (and the language server started) only in developer mode.
+          const diagnostics = yield* Effect.gen(function* () {
+            if (!(yield* developerMode(config))) return {}
+            yield* lsp.touchFile(filepath, "document")
+            return yield* lsp.diagnostics()
+          })
+          if (Object.keys(diagnostics).length > 0) {
+            const normalizedFilepath = FSUtil.normalizePath(filepath)
+            let projectDiagnosticsCount = 0
+            for (const [file, issues] of Object.entries(diagnostics)) {
+              const current = file === normalizedFilepath
+              if (!current && projectDiagnosticsCount >= MAX_PROJECT_DIAGNOSTICS_FILES) continue
+              const block = LSP.Diagnostic.report(current ? filepath : file, issues)
+              if (!block) continue
+              if (current) {
+                output += `\n\nLSP errors detected in this file, please fix:\n${block}`
+                continue
+              }
+              projectDiagnosticsCount++
+              output += `\n\nLSP errors detected in other files:\n${block}`
             }
-            projectDiagnosticsCount++
-            output += `\n\nLSP errors detected in other files:\n${block}`
           }
 
           return {
