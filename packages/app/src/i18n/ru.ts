@@ -1122,4 +1122,16 @@ export const dict = {
   "session.header.reveal.finder": "Показать в Finder",
   "session.header.reveal.fileExplorer": "Показать в проводнике",
   "session.header.reveal.containingFolder": "Открыть содержащую папку",
+
+  "permission.ask.bash.network": "Использовать интернет",
+  "permission.ask.bash.network.why": "Этот шаг отправляет или загружает данные за пределы компьютера.",
+  "permission.ask.bash.delete": "Удалить файлы",
+  "permission.ask.bash.delete.why": "Удалённые файлы может быть невозможно восстановить.",
+  "permission.ask.bash.other": "Выполнить шаг с вашими файлами",
+  "permission.ask.bash.other.why": "При этом на компьютере выполняется команда.",
+  "permission.ask.outside": "Использовать файлы вне этого рабочего пространства",
+  "permission.ask.outside.why": "Эти файлы находятся вне выбранной вами папки.",
+  "permission.ask.edit": "Изменить {{file}}",
+  "permission.ask.edit.why": "Это заменит текущее содержимое файла.",
+  "permission.ask.generic": "Продолжить этот шаг",
 }

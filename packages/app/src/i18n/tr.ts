@@ -1125,4 +1125,16 @@ export const dict = {
   "session.header.reveal.finder": "Finder'da göster",
   "session.header.reveal.fileExplorer": "Dosya Gezgini'nde göster",
   "session.header.reveal.containingFolder": "Bulunduğu klasörü aç",
+
+  "permission.ask.bash.network": "İnterneti kullan",
+  "permission.ask.bash.network.why": "Bu adım bu bilgisayarın dışına veri gönderir ya da indirir.",
+  "permission.ask.bash.delete": "Dosyaları sil",
+  "permission.ask.bash.delete.why": "Silinen dosyalar geri getirilemeyebilir.",
+  "permission.ask.bash.other": "Dosyalarınız üzerinde bir adım çalıştır",
+  "permission.ask.bash.other.why": "Bu, bu bilgisayarda bir komut çalıştırır.",
+  "permission.ask.outside": "Bu çalışma alanı dışındaki dosyaları kullan",
+  "permission.ask.outside.why": "Bu dosyalar seçtiğiniz klasörün dışında.",
+  "permission.ask.edit": "{{file}} dosyasını değiştir",
+  "permission.ask.edit.why": "Bu, dosyada şu an bulunanın yerine geçer.",
+  "permission.ask.generic": "Bu adıma devam et",
 } satisfies Partial<Record<Keys, string>>

@@ -1043,4 +1043,16 @@ export const dict = {
   "session.header.reveal.finder": "Pokaż w Finderze",
   "session.header.reveal.fileExplorer": "Pokaż w Eksploratorze plików",
   "session.header.reveal.containingFolder": "Otwórz folder nadrzędny",
+
+  "permission.ask.bash.network": "Skorzystać z internetu",
+  "permission.ask.bash.network.why": "Ten krok wysyła lub pobiera dane poza ten komputer.",
+  "permission.ask.bash.delete": "Usunąć pliki",
+  "permission.ask.bash.delete.why": "Usuniętych plików może nie dać się odzyskać.",
+  "permission.ask.bash.other": "Wykonać krok na Twoich plikach",
+  "permission.ask.bash.other.why": "Uruchamia to polecenie na tym komputerze.",
+  "permission.ask.outside": "Użyć plików spoza tego obszaru roboczego",
+  "permission.ask.outside.why": "Te pliki są poza folderem, który wybrałeś.",
+  "permission.ask.edit": "Zmienić {{file}}",
+  "permission.ask.edit.why": "Zastąpi to obecną zawartość pliku.",
+  "permission.ask.generic": "Kontynuować ten krok",
 }

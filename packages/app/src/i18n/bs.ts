@@ -1119,4 +1119,16 @@ export const dict = {
   "session.header.reveal.finder": "Prikaži u Finderu",
   "session.header.reveal.fileExplorer": "Prikaži u Exploreru",
   "session.header.reveal.containingFolder": "Otvori mapu koja ga sadrži",
+
+  "permission.ask.bash.network": "Koristiti internet",
+  "permission.ask.bash.network.why": "Ovaj korak šalje ili preuzima podatke izvan ovog računara.",
+  "permission.ask.bash.delete": "Obrisati datoteke",
+  "permission.ask.bash.delete.why": "Obrisane datoteke možda se neće moći vratiti.",
+  "permission.ask.bash.other": "Izvršiti korak nad vašim datotekama",
+  "permission.ask.bash.other.why": "Time se izvršava naredba na ovom računaru.",
+  "permission.ask.outside": "Koristiti datoteke izvan ovog radnog prostora",
+  "permission.ask.outside.why": "Te datoteke su izvan mape koju ste odabrali.",
+  "permission.ask.edit": "Izmijeniti {{file}}",
+  "permission.ask.edit.why": "Time se zamjenjuje ono što je sada u datoteci.",
+  "permission.ask.generic": "Nastaviti s ovim korakom",
 }

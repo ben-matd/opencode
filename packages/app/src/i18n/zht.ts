@@ -1093,4 +1093,16 @@ export const dict = {
   "session.header.reveal.finder": "在 Finder 中顯示",
   "session.header.reveal.fileExplorer": "在檔案總管中顯示",
   "session.header.reveal.containingFolder": "開啟所在資料夾",
+
+  "permission.ask.bash.network": "使用網際網路",
+  "permission.ask.bash.network.why": "這一步會向這台電腦之外傳送或下載資料。",
+  "permission.ask.bash.delete": "刪除檔案",
+  "permission.ask.bash.delete.why": "刪除的檔案可能無法復原。",
+  "permission.ask.bash.other": "對你的檔案執行一個步驟",
+  "permission.ask.bash.other.why": "這會在這台電腦上執行一條指令。",
+  "permission.ask.outside": "使用此工作區之外的檔案",
+  "permission.ask.outside.why": "這些檔案在你所選的資料夾之外。",
+  "permission.ask.edit": "修改 {{file}}",
+  "permission.ask.edit.why": "這會取代檔案中現有的內容。",
+  "permission.ask.generic": "繼續這一步",
 } satisfies Partial<Record<Keys, string>>

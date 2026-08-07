@@ -1097,4 +1097,16 @@ export const dict = {
   "session.header.reveal.finder": "在访达中显示",
   "session.header.reveal.fileExplorer": "在文件资源管理器中显示",
   "session.header.reveal.containingFolder": "打开所在文件夹",
+
+  "permission.ask.bash.network": "使用互联网",
+  "permission.ask.bash.network.why": "这一步会向这台电脑之外发送或下载数据。",
+  "permission.ask.bash.delete": "删除文件",
+  "permission.ask.bash.delete.why": "删除的文件可能无法恢复。",
+  "permission.ask.bash.other": "对你的文件执行一个步骤",
+  "permission.ask.bash.other.why": "这会在这台电脑上运行一条命令。",
+  "permission.ask.outside": "使用此工作区之外的文件",
+  "permission.ask.outside.why": "这些文件在你所选的文件夹之外。",
+  "permission.ask.edit": "修改 {{file}}",
+  "permission.ask.edit.why": "这会替换文件中现有的内容。",
+  "permission.ask.generic": "继续这一步",
 } satisfies Partial<Record<Keys, string>>

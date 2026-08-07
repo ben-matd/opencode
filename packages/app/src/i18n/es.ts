@@ -1127,4 +1127,16 @@ export const dict = {
   "session.header.reveal.finder": "Mostrar en Finder",
   "session.header.reveal.fileExplorer": "Mostrar en el Explorador de archivos",
   "session.header.reveal.containingFolder": "Abrir la carpeta contenedora",
+
+  "permission.ask.bash.network": "Usar internet",
+  "permission.ask.bash.network.why": "Este paso envía o descarga datos fuera de este ordenador.",
+  "permission.ask.bash.delete": "Eliminar archivos",
+  "permission.ask.bash.delete.why": "Los archivos eliminados podrían no recuperarse.",
+  "permission.ask.bash.other": "Ejecutar un paso sobre tus archivos",
+  "permission.ask.bash.other.why": "Esto ejecuta un comando en este ordenador.",
+  "permission.ask.outside": "Usar archivos fuera de este espacio de trabajo",
+  "permission.ask.outside.why": "Estos archivos están fuera de la carpeta que elegiste.",
+  "permission.ask.edit": "Cambiar {{file}}",
+  "permission.ask.edit.why": "Esto reemplaza lo que hay ahora en el archivo.",
+  "permission.ask.generic": "Continuar con este paso",
 }

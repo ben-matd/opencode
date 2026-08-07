@@ -1119,4 +1119,16 @@ export const dict = {
   "workspace.reset.archived.one": "1 conversation will be archived.",
   "workspace.reset.archived.many": "{{count}} conversations will be archived.",
   "workspace.reset.note": "This will reset the branch copy to match the default branch.",
+
+  "permission.ask.bash.network": "Use the internet",
+  "permission.ask.bash.network.why": "This step sends or downloads data outside this computer.",
+  "permission.ask.bash.delete": "Delete files",
+  "permission.ask.bash.delete.why": "Deleted files may not be recoverable.",
+  "permission.ask.bash.other": "Run a step on your files",
+  "permission.ask.bash.other.why": "This runs a command on this computer.",
+  "permission.ask.outside": "Use files outside this workspace",
+  "permission.ask.outside.why": "These files are outside the folder you chose to work in.",
+  "permission.ask.edit": "Change {{file}}",
+  "permission.ask.edit.why": "This replaces what is in the file now.",
+  "permission.ask.generic": "Continue with this step",
 }

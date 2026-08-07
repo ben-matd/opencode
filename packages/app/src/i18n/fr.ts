@@ -1056,4 +1056,16 @@ export const dict = {
   "session.header.reveal.finder": "Afficher dans le Finder",
   "session.header.reveal.fileExplorer": "Afficher dans l'Explorateur de fichiers",
   "session.header.reveal.containingFolder": "Ouvrir le dossier parent",
+
+  "permission.ask.bash.network": "Utiliser Internet",
+  "permission.ask.bash.network.why": "Cette étape envoie ou télécharge des données hors de cet ordinateur.",
+  "permission.ask.bash.delete": "Supprimer des fichiers",
+  "permission.ask.bash.delete.why": "Les fichiers supprimés peuvent être irrécupérables.",
+  "permission.ask.bash.other": "Exécuter une étape sur vos fichiers",
+  "permission.ask.bash.other.why": "Cela exécute une commande sur cet ordinateur.",
+  "permission.ask.outside": "Utiliser des fichiers hors de cet espace de travail",
+  "permission.ask.outside.why": "Ces fichiers se trouvent hors du dossier que vous avez choisi.",
+  "permission.ask.edit": "Modifier {{file}}",
+  "permission.ask.edit.why": "Cela remplace le contenu actuel du fichier.",
+  "permission.ask.generic": "Poursuivre cette étape",
 }

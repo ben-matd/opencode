@@ -1056,4 +1056,16 @@ export const dict = {
   "session.header.reveal.finder": "Im Finder anzeigen",
   "session.header.reveal.fileExplorer": "Im Explorer anzeigen",
   "session.header.reveal.containingFolder": "Übergeordneten Ordner öffnen",
+
+  "permission.ask.bash.network": "Internet nutzen",
+  "permission.ask.bash.network.why": "Dieser Schritt sendet oder lädt Daten außerhalb dieses Computers.",
+  "permission.ask.bash.delete": "Dateien löschen",
+  "permission.ask.bash.delete.why": "Gelöschte Dateien lassen sich möglicherweise nicht wiederherstellen.",
+  "permission.ask.bash.other": "Einen Schritt an Ihren Dateien ausführen",
+  "permission.ask.bash.other.why": "Dabei wird ein Befehl auf diesem Computer ausgeführt.",
+  "permission.ask.outside": "Dateien außerhalb dieses Arbeitsbereichs verwenden",
+  "permission.ask.outside.why": "Diese Dateien liegen außerhalb des von Ihnen gewählten Ordners.",
+  "permission.ask.edit": "{{file}} ändern",
+  "permission.ask.edit.why": "Damit wird der aktuelle Inhalt der Datei ersetzt.",
+  "permission.ask.generic": "Mit diesem Schritt fortfahren",
 } satisfies Partial<Record<Keys, string>>

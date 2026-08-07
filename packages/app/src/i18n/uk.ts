@@ -1124,4 +1124,16 @@ export const dict = {
   "session.header.reveal.finder": "Показати у Finder",
   "session.header.reveal.fileExplorer": "Показати у Провіднику",
   "session.header.reveal.containingFolder": "Відкрити теку, що містить файл",
+
+  "permission.ask.bash.network": "Використати інтернет",
+  "permission.ask.bash.network.why": "Цей крок надсилає або завантажує дані за межі комп'ютера.",
+  "permission.ask.bash.delete": "Видалити файли",
+  "permission.ask.bash.delete.why": "Видалені файли може бути неможливо відновити.",
+  "permission.ask.bash.other": "Виконати крок із вашими файлами",
+  "permission.ask.bash.other.why": "При цьому на комп'ютері виконується команда.",
+  "permission.ask.outside": "Використати файли поза цим робочим простором",
+  "permission.ask.outside.why": "Ці файли розташовані поза обраною вами текою.",
+  "permission.ask.edit": "Змінити {{file}}",
+  "permission.ask.edit.why": "Це замінить поточний вміст файлу.",
+  "permission.ask.generic": "Продовжити цей крок",
 }

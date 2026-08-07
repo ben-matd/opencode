@@ -1106,4 +1106,16 @@ export const dict = {
   "session.header.reveal.finder": "แสดงใน Finder",
   "session.header.reveal.fileExplorer": "แสดงใน File Explorer",
   "session.header.reveal.containingFolder": "เปิดโฟลเดอร์ที่บรรจุไฟล์",
+
+  "permission.ask.bash.network": "ใช้อินเทอร์เน็ต",
+  "permission.ask.bash.network.why": "ขั้นตอนนี้ส่งหรือดาวน์โหลดข้อมูลออกนอกคอมพิวเตอร์เครื่องนี้",
+  "permission.ask.bash.delete": "ลบไฟล์",
+  "permission.ask.bash.delete.why": "ไฟล์ที่ลบแล้วอาจกู้คืนไม่ได้",
+  "permission.ask.bash.other": "ดำเนินการขั้นตอนกับไฟล์ของคุณ",
+  "permission.ask.bash.other.why": "การนี้จะรันคำสั่งบนคอมพิวเตอร์เครื่องนี้",
+  "permission.ask.outside": "ใช้ไฟล์นอกพื้นที่ทำงานนี้",
+  "permission.ask.outside.why": "ไฟล์เหล่านี้อยู่นอกโฟลเดอร์ที่คุณเลือก",
+  "permission.ask.edit": "แก้ไข {{file}}",
+  "permission.ask.edit.why": "การนี้จะแทนที่เนื้อหาที่อยู่ในไฟล์ตอนนี้",
+  "permission.ask.generic": "ดำเนินขั้นตอนนี้ต่อ",
 }

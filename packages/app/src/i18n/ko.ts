@@ -1034,4 +1034,16 @@ export const dict = {
   "session.header.reveal.finder": "Finder에서 보기",
   "session.header.reveal.fileExplorer": "파일 탐색기에서 보기",
   "session.header.reveal.containingFolder": "상위 폴더 열기",
+
+  "permission.ask.bash.network": "인터넷 사용",
+  "permission.ask.bash.network.why": "이 단계는 이 컴퓨터 밖으로 데이터를 보내거나 내려받습니다.",
+  "permission.ask.bash.delete": "파일 삭제",
+  "permission.ask.bash.delete.why": "삭제한 파일은 복구하지 못할 수 있습니다.",
+  "permission.ask.bash.other": "파일에 대해 단계 실행",
+  "permission.ask.bash.other.why": "이 컴퓨터에서 명령을 실행합니다.",
+  "permission.ask.outside": "이 작업 공간 밖의 파일 사용",
+  "permission.ask.outside.why": "이 파일들은 선택한 폴더 밖에 있습니다.",
+  "permission.ask.edit": "{{file}} 변경",
+  "permission.ask.edit.why": "현재 파일에 있는 내용을 대체합니다.",
+  "permission.ask.generic": "이 단계 계속하기",
 }

@@ -1111,4 +1111,16 @@ export const dict = {
   "session.header.reveal.finder": "Vis i Finder",
   "session.header.reveal.fileExplorer": "Vis i Stifinder",
   "session.header.reveal.containingFolder": "Åbn den indeholdende mappe",
+
+  "permission.ask.bash.network": "Bruge internettet",
+  "permission.ask.bash.network.why": "Dette trin sender eller henter data uden for denne computer.",
+  "permission.ask.bash.delete": "Slette filer",
+  "permission.ask.bash.delete.why": "Slettede filer kan muligvis ikke gendannes.",
+  "permission.ask.bash.other": "Køre et trin på dine filer",
+  "permission.ask.bash.other.why": "Det kører en kommando på denne computer.",
+  "permission.ask.outside": "Bruge filer uden for dette arbejdsområde",
+  "permission.ask.outside.why": "Filerne ligger uden for den mappe, du valgte.",
+  "permission.ask.edit": "Ændre {{file}}",
+  "permission.ask.edit.why": "Det erstatter det, der står i filen nu.",
+  "permission.ask.generic": "Fortsætte med dette trin",
 }

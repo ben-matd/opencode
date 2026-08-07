@@ -1043,4 +1043,16 @@ export const dict = {
   "session.header.reveal.finder": "Mostrar no Finder",
   "session.header.reveal.fileExplorer": "Mostrar no Explorador de Arquivos",
   "session.header.reveal.containingFolder": "Abrir a pasta correspondente",
+
+  "permission.ask.bash.network": "Usar a internet",
+  "permission.ask.bash.network.why": "Esta etapa envia ou baixa dados para fora deste computador.",
+  "permission.ask.bash.delete": "Excluir arquivos",
+  "permission.ask.bash.delete.why": "Arquivos excluídos podem não ser recuperáveis.",
+  "permission.ask.bash.other": "Executar uma etapa nos seus arquivos",
+  "permission.ask.bash.other.why": "Isso executa um comando neste computador.",
+  "permission.ask.outside": "Usar arquivos fora deste espaço de trabalho",
+  "permission.ask.outside.why": "Esses arquivos estão fora da pasta que você escolheu.",
+  "permission.ask.edit": "Alterar {{file}}",
+  "permission.ask.edit.why": "Isso substitui o que está no arquivo agora.",
+  "permission.ask.generic": "Continuar com esta etapa",
 }

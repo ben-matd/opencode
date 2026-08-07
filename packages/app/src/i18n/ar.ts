@@ -1027,4 +1027,16 @@ export const dict = {
   "session.header.reveal.finder": "إظهار في Finder",
   "session.header.reveal.fileExplorer": "إظهار في مستكشف الملفات",
   "session.header.reveal.containingFolder": "فتح المجلد الحاوي",
+
+  "permission.ask.bash.network": "استخدام الإنترنت",
+  "permission.ask.bash.network.why": "ترسل هذه الخطوة بيانات أو تنزّلها خارج هذا الجهاز.",
+  "permission.ask.bash.delete": "حذف ملفات",
+  "permission.ask.bash.delete.why": "قد يتعذّر استرجاع الملفات المحذوفة.",
+  "permission.ask.bash.other": "تنفيذ خطوة على ملفاتك",
+  "permission.ask.bash.other.why": "يؤدي ذلك إلى تنفيذ أمر على هذا الجهاز.",
+  "permission.ask.outside": "استخدام ملفات خارج مساحة العمل هذه",
+  "permission.ask.outside.why": "هذه الملفات خارج المجلد الذي اخترته.",
+  "permission.ask.edit": "تغيير {{file}}",
+  "permission.ask.edit.why": "سيحل هذا محل المحتوى الحالي للملف.",
+  "permission.ask.generic": "المتابعة بهذه الخطوة",
 }

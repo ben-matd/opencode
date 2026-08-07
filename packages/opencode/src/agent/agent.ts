@@ -15,6 +15,7 @@ import PROMPT_EXPLORE from "./prompt/explore.txt"
 import PROMPT_SUMMARY from "./prompt/summary.txt"
 import PROMPT_TITLE from "./prompt/title.txt"
 import { Permission } from "@/permission"
+import { ShellID } from "@/tool/shell/id"
 import { mergeDeep, pipe, sortBy, values } from "remeda"
 import { Global } from "@opencode-ai/core/global"
 import path from "path"
@@ -116,8 +117,46 @@ const layer = Layer.effect(
           ...Object.fromEntries(whitelistedDirs.map((dir) => [dir, "allow"])),
         } satisfies Record<string, "allow" | "ask" | "deny">
 
+        // Knowledge-work defaults: reading and writing inside the workspace just
+        // happens, but anything that reaches the network or destroys a file is
+        // worth a person's say-so. Developer mode restores the previous
+        // allow-everything baseline.
+        const guarded: Record<string, "allow" | "ask" | "deny"> = (cfg.developer_mode ?? false)
+          ? { "*": "allow" }
+          : {
+              "*": "allow",
+              // reaches the network
+              "*curl *": "ask",
+              "*wget *": "ask",
+              "*ssh *": "ask",
+              "*scp *": "ask",
+              "*rsync *": "ask",
+              "*ftp *": "ask",
+              "*git push*": "ask",
+              "*git pull*": "ask",
+              "*git clone*": "ask",
+              "*git fetch*": "ask",
+              "*pip install *": "ask",
+              "*pip3 install *": "ask",
+              "*npm install*": "ask",
+              "*pnpm install*": "ask",
+              "*yarn add *": "ask",
+              "*bun install*": "ask",
+              "*brew install *": "ask",
+              "*apt install *": "ask",
+              "*apt-get install *": "ask",
+              // destroys files
+              "rm *": "ask",
+              "*rm -*": "ask",
+              "rmdir *": "ask",
+              "del *": "ask",
+              "shred *": "ask",
+              "truncate *": "ask",
+            }
+
         const defaults = Permission.fromConfig({
           "*": "allow",
+          [ShellID.ToolID]: guarded,
           doom_loop: "ask",
           external_directory: {
             "*": "ask",

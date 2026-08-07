@@ -1035,4 +1035,16 @@ export const dict = {
   "session.header.reveal.finder": "Finder で表示",
   "session.header.reveal.fileExplorer": "エクスプローラーで表示",
   "session.header.reveal.containingFolder": "含まれるフォルダを開く",
+
+  "permission.ask.bash.network": "インターネットを使う",
+  "permission.ask.bash.network.why": "この手順はこのコンピュータの外へデータを送信またはダウンロードします。",
+  "permission.ask.bash.delete": "ファイルを削除する",
+  "permission.ask.bash.delete.why": "削除したファイルは元に戻せない場合があります。",
+  "permission.ask.bash.other": "ファイルに対して処理を実行する",
+  "permission.ask.bash.other.why": "このコンピュータ上でコマンドを実行します。",
+  "permission.ask.outside": "このワークスペースの外のファイルを使う",
+  "permission.ask.outside.why": "これらのファイルは選んだフォルダの外にあります。",
+  "permission.ask.edit": "{{file}} を変更する",
+  "permission.ask.edit.why": "現在のファイルの内容が置き換わります。",
+  "permission.ask.generic": "この手順を続ける",
 }

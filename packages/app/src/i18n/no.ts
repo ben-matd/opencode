@@ -1130,4 +1130,16 @@ export const dict = {
   "session.header.reveal.finder": "Vis i Finder",
   "session.header.reveal.fileExplorer": "Vis i Filutforsker",
   "session.header.reveal.containingFolder": "Åpne mappen den ligger i",
+
+  "permission.ask.bash.network": "Bruke internett",
+  "permission.ask.bash.network.why": "Dette steget sender eller laster ned data utenfor denne datamaskinen.",
+  "permission.ask.bash.delete": "Slette filer",
+  "permission.ask.bash.delete.why": "Slettede filer kan være umulige å gjenopprette.",
+  "permission.ask.bash.other": "Kjøre et steg på filene dine",
+  "permission.ask.bash.other.why": "Det kjører en kommando på denne datamaskinen.",
+  "permission.ask.outside": "Bruke filer utenfor dette arbeidsområdet",
+  "permission.ask.outside.why": "Filene ligger utenfor mappen du valgte.",
+  "permission.ask.edit": "Endre {{file}}",
+  "permission.ask.edit.why": "Det erstatter det som står i filen nå.",
+  "permission.ask.generic": "Fortsette med dette steget",
 } satisfies Partial<Record<Keys, string>>
