@@ -84,8 +84,14 @@ const it = testEffect(
 )
 
 describe("session.system", () => {
-  test("selects the Meta prompt for Muse Spark model IDs", () => {
-    expect(SystemPrompt.provider({ api: { id: "meta/muse-spark-preview" } } as Provider.Model)[0]).toContain(
+  test("uses the knowledge-work prompt for every model by default", () => {
+    for (const id of ["meta/muse-spark-preview", "anthropic/claude-sonnet-4", "openai/gpt-5", "google/gemini-2.5"]) {
+      expect(SystemPrompt.provider({ api: { id } } as Provider.Model)[0]).toContain("You are Cowork")
+    }
+  })
+
+  test("selects the Meta prompt for Muse Spark model IDs in developer mode", () => {
+    expect(SystemPrompt.provider({ api: { id: "meta/muse-spark-preview" } } as Provider.Model, true)[0]).toContain(
       "Meta Muse Spark",
     )
   })
