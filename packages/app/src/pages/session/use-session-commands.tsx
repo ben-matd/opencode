@@ -89,6 +89,7 @@ export const useSessionCommands = (actions: SessionCommandContext) => {
   const activeFileTab = tabState.activeFileTab
   const closableTab = tabState.closableTab
   const shown = settings.visibility.fileTree
+  const developer = settings.visibility.developer
 
   const messages = () => {
     const id = params.id
@@ -493,28 +494,34 @@ export const useSessionCommands = (actions: SessionCommandContext) => {
     }),
   ]
 
+  // The terminal and the version-control review panel are developer surface;
+  // the code stays, the way in does not appear for everyone else.
   const viewCmds = () => [
-    viewCommand({
-      id: "terminal.toggle",
-      title: language.t("command.terminal.toggle"),
-      keybind: "ctrl+`",
-      slash: "terminal",
-      onSelect: () => {
-        if (view().terminal.opened()) {
-          terminal.cancelFocus()
-          view().terminal.close()
-          return
-        }
-        terminal.requestFocus(terminal.active())
-        view().terminal.open()
-      },
-    }),
-    viewCommand({
-      id: "review.toggle",
-      title: language.t("command.review.toggle"),
-      keybind: "mod+shift+r",
-      onSelect: () => view().reviewPanel.toggle(),
-    }),
+    ...(developer()
+      ? [
+          viewCommand({
+            id: "terminal.toggle",
+            title: language.t("command.terminal.toggle"),
+            keybind: "ctrl+`",
+            slash: "terminal",
+            onSelect: () => {
+              if (view().terminal.opened()) {
+                terminal.cancelFocus()
+                view().terminal.close()
+                return
+              }
+              terminal.requestFocus(terminal.active())
+              view().terminal.open()
+            },
+          }),
+          viewCommand({
+            id: "review.toggle",
+            title: language.t("command.review.toggle"),
+            keybind: "mod+shift+r",
+            onSelect: () => view().reviewPanel.toggle(),
+          }),
+        ]
+      : []),
     ...(shown()
       ? [
           viewCommand({
@@ -533,7 +540,7 @@ export const useSessionCommands = (actions: SessionCommandContext) => {
     }),
   ]
 
-  const terminalCmds = () => [
+  const terminalCmds = () => (!developer() ? [] : [
     terminalCommand({
       id: "terminal.close",
       title: language.t("terminal.close"),
@@ -549,7 +556,7 @@ export const useSessionCommands = (actions: SessionCommandContext) => {
       keybind: "ctrl+alt+t",
       onSelect: openTerminal,
     }),
-  ]
+  ])
 
   const messageCmds = () => [
     sessionCommand({

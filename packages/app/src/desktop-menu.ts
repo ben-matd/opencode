@@ -72,7 +72,7 @@ export type DesktopMenu = {
 export const DESKTOP_MENU: DesktopMenu[] = [
   {
     id: "app",
-    label: "OpenCode",
+    label: "Cowork",
     platforms: ["macos"],
     items: [
       { type: "item", role: "about" },
@@ -95,11 +95,11 @@ export const DESKTOP_MENU: DesktopMenu[] = [
     items: [
       {
         type: "item",
-        label: "New Session",
+        label: "New Task",
         command: "session.new",
         accelerator: { macos: "Shift+Cmd+S" },
       },
-      { type: "item", label: "Open Project...", command: "project.open", accelerator: { macos: "Cmd+O" } },
+      { type: "item", label: "Open Workspace...", command: "project.open", accelerator: { macos: "Cmd+O" } },
       {
         type: "item",
         label: "Settings",
@@ -142,7 +142,6 @@ export const DESKTOP_MENU: DesktopMenu[] = [
     label: "View",
     items: [
       { type: "item", label: "Toggle Sidebar", command: "sidebar.toggle" },
-      { type: "item", label: "Toggle Terminal", command: "terminal.toggle", accelerator: { macos: "Ctrl+`" } },
       { type: "item", label: "Toggle File Tree", command: "fileTree.toggle" },
       { type: "separator" },
       { type: "item", label: "Reload", action: "view.reload", role: "reload" },
@@ -168,18 +167,18 @@ export const DESKTOP_MENU: DesktopMenu[] = [
       { type: "item", label: "Back", command: "common.goBack", accelerator: { macos: "Cmd+[" } },
       { type: "item", label: "Forward", command: "common.goForward", accelerator: { macos: "Cmd+]" } },
       { type: "separator" },
-      { type: "item", label: "Previous Session", command: "session.previous", accelerator: { macos: "Option+Up" } },
-      { type: "item", label: "Next Session", command: "session.next", accelerator: { macos: "Option+Down" } },
+      { type: "item", label: "Previous Conversation", command: "session.previous", accelerator: { macos: "Option+Up" } },
+      { type: "item", label: "Next Conversation", command: "session.next", accelerator: { macos: "Option+Down" } },
       { type: "separator" },
       {
         type: "item",
-        label: "Previous Project",
+        label: "Previous Workspace",
         command: "project.previous",
         accelerator: { macos: "Cmd+Option+Up" },
       },
       {
         type: "item",
-        label: "Next Project",
+        label: "Next Workspace",
         command: "project.next",
         accelerator: { macos: "Cmd+Option+Down" },
       },
