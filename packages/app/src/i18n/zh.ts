@@ -1109,4 +1109,20 @@ export const dict = {
   "permission.ask.edit": "修改 {{file}}",
   "permission.ask.edit.why": "这会替换文件中现有的内容。",
   "permission.ask.generic": "继续这一步",
+
+  "task.templates.heading": "或者从这些开始",
+  "task.template.summarize.title": "汇总这些文件",
+  "task.template.summarize.prompt": "读一遍这个工作区里的文件，给我写一份总结报告。",
+  "task.template.spreadsheet.title": "做一个表格",
+  "task.template.spreadsheet.prompt": "把这些文件里的数字提取出来，做成一个我能排序和筛选的表格。",
+  "task.template.report.title": "起草一份报告",
+  "task.template.report.prompt": "根据这个工作区里的内容起草一份报告。需要知道什么先问我。",
+  "task.template.organize.title": "整理这个文件夹",
+  "task.template.organize.prompt": "把这个文件夹整理成合理的子文件夹，并给文件起清楚的名字。动手之前先告诉我打算怎么分。",
+  "task.template.research.title": "研究一个主题",
+  "task.template.research.prompt": "帮我研究这个主题，把你找到的内容写出来并附上来源： ",
+
+  "task.progress.working": "正在处理",
+  "task.progress.finishing": "正在收尾",
+  "task.progress.steps": "第 {{done}} 步，共 {{total}} 步",
 } satisfies Partial<Record<Keys, string>>

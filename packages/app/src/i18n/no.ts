@@ -1142,4 +1142,20 @@ export const dict = {
   "permission.ask.edit": "Endre {{file}}",
   "permission.ask.edit.why": "Det erstatter det som står i filen nå.",
   "permission.ask.generic": "Fortsette med dette steget",
+
+  "task.templates.heading": "Eller start med en av disse",
+  "task.template.summarize.title": "Oppsummer filer",
+  "task.template.summarize.prompt": "Les filene i dette arbeidsområdet og skriv en oppsummerende rapport til meg.",
+  "task.template.spreadsheet.title": "Lag et regneark",
+  "task.template.spreadsheet.prompt": "Hent ut tallene fra disse filene og lag et regneark jeg kan sortere og filtrere.",
+  "task.template.report.title": "Skriv et rapportutkast",
+  "task.template.report.prompt": "Skriv et rapportutkast basert på innholdet i dette arbeidsområdet. Spør meg først om det du trenger å vite.",
+  "task.template.organize.title": "Rydd i denne mappen",
+  "task.template.organize.prompt": "Rydd denne mappen i fornuftige undermapper og gi filene tydelige navn. Fortell meg strukturen før du flytter noe.",
+  "task.template.research.title": "Undersøk et tema",
+  "task.template.research.prompt": "Undersøk dette temaet og skriv opp det du finner, med kilder: ",
+
+  "task.progress.working": "Jobber med det",
+  "task.progress.finishing": "Avslutter",
+  "task.progress.steps": "Steg {{done}} av {{total}}",
 } satisfies Partial<Record<Keys, string>>

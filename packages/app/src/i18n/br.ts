@@ -1055,4 +1055,20 @@ export const dict = {
   "permission.ask.edit": "Alterar {{file}}",
   "permission.ask.edit.why": "Isso substitui o que está no arquivo agora.",
   "permission.ask.generic": "Continuar com esta etapa",
+
+  "task.templates.heading": "Ou comece com uma destas",
+  "task.template.summarize.title": "Resumir arquivos",
+  "task.template.summarize.prompt": "Leia os arquivos deste espaço de trabalho e escreva um relatório resumindo o que dizem.",
+  "task.template.spreadsheet.title": "Montar uma planilha",
+  "task.template.spreadsheet.prompt": "Extraia os números destes arquivos e monte uma planilha que eu possa ordenar e filtrar.",
+  "task.template.report.title": "Redigir um relatório",
+  "task.template.report.prompt": "Redija um relatório com base no que há neste espaço de trabalho. Pergunte antes o que precisar saber.",
+  "task.template.organize.title": "Organizar esta pasta",
+  "task.template.organize.prompt": "Organize esta pasta em subpastas coerentes e dê nomes claros aos arquivos. Me diga o formato antes de mover qualquer coisa.",
+  "task.template.research.title": "Pesquisar um tema",
+  "task.template.research.prompt": "Pesquise este tema e escreva o que encontrar, com fontes: ",
+
+  "task.progress.working": "Trabalhando nisso",
+  "task.progress.finishing": "Finalizando",
+  "task.progress.steps": "Etapa {{done}} de {{total}}",
 }

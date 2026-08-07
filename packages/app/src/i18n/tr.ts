@@ -1137,4 +1137,20 @@ export const dict = {
   "permission.ask.edit": "{{file}} dosyasını değiştir",
   "permission.ask.edit.why": "Bu, dosyada şu an bulunanın yerine geçer.",
   "permission.ask.generic": "Bu adıma devam et",
+
+  "task.templates.heading": "Ya da şunlardan biriyle başlayın",
+  "task.template.summarize.title": "Dosyaları özetle",
+  "task.template.summarize.prompt": "Bu çalışma alanındaki dosyaları oku ve bana ne anlattıklarına dair bir özet rapor yaz.",
+  "task.template.spreadsheet.title": "Elektronik tablo hazırla",
+  "task.template.spreadsheet.prompt": "Bu dosyalardaki sayıları çıkar ve sıralayıp filtreleyebileceğim bir tablo hazırla.",
+  "task.template.report.title": "Rapor taslağı yaz",
+  "task.template.report.prompt": "Bu çalışma alanındaki içeriğe dayanarak bir rapor taslağı yaz. Önce bilmen gerekenleri bana sor.",
+  "task.template.organize.title": "Bu klasörü düzenle",
+  "task.template.organize.prompt": "Bu klasörü anlamlı alt klasörlere ayır ve dosyalara net adlar ver. Bir şeyi taşımadan önce planı bana söyle.",
+  "task.template.research.title": "Bir konuyu araştır",
+  "task.template.research.prompt": "Bu konuyu araştır ve bulduklarını kaynaklarıyla birlikte yaz: ",
+
+  "task.progress.working": "Üzerinde çalışıyorum",
+  "task.progress.finishing": "Tamamlanıyor",
+  "task.progress.steps": "Adım {{done}} / {{total}}",
 } satisfies Partial<Record<Keys, string>>

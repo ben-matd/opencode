@@ -1047,4 +1047,20 @@ export const dict = {
   "permission.ask.edit": "{{file}} を変更する",
   "permission.ask.edit.why": "現在のファイルの内容が置き換わります。",
   "permission.ask.generic": "この手順を続ける",
+
+  "task.templates.heading": "または、ここから始めましょう",
+  "task.template.summarize.title": "ファイルを要約する",
+  "task.template.summarize.prompt": "このワークスペースのファイルを読んで、内容をまとめた報告書を書いてください。",
+  "task.template.spreadsheet.title": "表を作る",
+  "task.template.spreadsheet.prompt": "これらのファイルから数値を取り出して、並べ替えや絞り込みができる表を作ってください。",
+  "task.template.report.title": "レポートの下書き",
+  "task.template.report.prompt": "このワークスペースの内容をもとにレポートの下書きを作ってください。必要なことは先に聞いてください。",
+  "task.template.organize.title": "フォルダを整理する",
+  "task.template.organize.prompt": "このフォルダを意味のあるサブフォルダに整理し、ファイルにわかりやすい名前を付けてください。移動する前に構成を教えてください。",
+  "task.template.research.title": "テーマを調べる",
+  "task.template.research.prompt": "このテーマについて調べて、出典付きでまとめてください: ",
+
+  "task.progress.working": "作業中です",
+  "task.progress.finishing": "仕上げています",
+  "task.progress.steps": "ステップ {{done}} / {{total}}",
 }

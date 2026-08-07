@@ -1046,4 +1046,20 @@ export const dict = {
   "permission.ask.edit": "{{file}} 변경",
   "permission.ask.edit.why": "현재 파일에 있는 내용을 대체합니다.",
   "permission.ask.generic": "이 단계 계속하기",
+
+  "task.templates.heading": "또는 여기서 시작해 보세요",
+  "task.template.summarize.title": "파일 요약하기",
+  "task.template.summarize.prompt": "이 작업 공간의 파일들을 읽고 내용을 정리한 요약 보고서를 써 주세요.",
+  "task.template.spreadsheet.title": "스프레드시트 만들기",
+  "task.template.spreadsheet.prompt": "이 파일들에서 수치를 뽑아 정렬하고 필터링할 수 있는 스프레드시트를 만들어 주세요.",
+  "task.template.report.title": "보고서 초안 쓰기",
+  "task.template.report.prompt": "이 작업 공간의 내용을 바탕으로 보고서 초안을 써 주세요. 필요한 건 먼저 물어봐 주세요.",
+  "task.template.organize.title": "이 폴더 정리하기",
+  "task.template.organize.prompt": "이 폴더를 알맞은 하위 폴더로 정리하고 파일에 명확한 이름을 붙여 주세요. 옮기기 전에 구조를 알려 주세요.",
+  "task.template.research.title": "주제 조사하기",
+  "task.template.research.prompt": "이 주제를 조사해서 출처와 함께 정리해 주세요: ",
+
+  "task.progress.working": "작업 중입니다",
+  "task.progress.finishing": "마무리하는 중",
+  "task.progress.steps": "{{total}}단계 중 {{done}}단계",
 }

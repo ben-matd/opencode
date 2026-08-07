@@ -1131,4 +1131,20 @@ export const dict = {
   "permission.ask.edit": "Izmijeniti {{file}}",
   "permission.ask.edit.why": "Time se zamjenjuje ono što je sada u datoteci.",
   "permission.ask.generic": "Nastaviti s ovim korakom",
+
+  "task.templates.heading": "Ili počnite jednim od ovih",
+  "task.template.summarize.title": "Sažmi datoteke",
+  "task.template.summarize.prompt": "Pročitaj datoteke u ovom radnom prostoru i napiši mi sažeti izvještaj o njihovom sadržaju.",
+  "task.template.spreadsheet.title": "Napravi tabelu",
+  "task.template.spreadsheet.prompt": "Izvuci brojke iz ovih datoteka i napravi mi tabelu koju mogu sortirati i filtrirati.",
+  "task.template.report.title": "Napiši izvještaj",
+  "task.template.report.prompt": "Napiši izvještaj na osnovu sadržaja ovog radnog prostora. Pitaj me sve što trebaš znati prije toga.",
+  "task.template.organize.title": "Sredi ovu mapu",
+  "task.template.organize.prompt": "Sredi ovu mapu u smislene podmape i daj datotekama jasna imena. Reci mi strukturu prije nego išta pomjeriš.",
+  "task.template.research.title": "Istraži temu",
+  "task.template.research.prompt": "Istraži ovu temu i napiši šta si našao, s izvorima: ",
+
+  "task.progress.working": "Radim na tome",
+  "task.progress.finishing": "Završavam",
+  "task.progress.steps": "Korak {{done}} od {{total}}",
 }

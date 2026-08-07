@@ -1105,4 +1105,20 @@ export const dict = {
   "permission.ask.edit": "修改 {{file}}",
   "permission.ask.edit.why": "這會取代檔案中現有的內容。",
   "permission.ask.generic": "繼續這一步",
+
+  "task.templates.heading": "或者從這些開始",
+  "task.template.summarize.title": "彙整這些檔案",
+  "task.template.summarize.prompt": "讀一遍這個工作區裡的檔案，給我寫一份總結報告。",
+  "task.template.spreadsheet.title": "做一個試算表",
+  "task.template.spreadsheet.prompt": "把這些檔案裡的數字擷取出來，做成一個我能排序和篩選的試算表。",
+  "task.template.report.title": "草擬一份報告",
+  "task.template.report.prompt": "根據這個工作區裡的內容草擬一份報告。需要知道什麼先問我。",
+  "task.template.organize.title": "整理這個資料夾",
+  "task.template.organize.prompt": "把這個資料夾整理成合理的子資料夾，並給檔案取清楚的名字。動手之前先告訴我打算怎麼分。",
+  "task.template.research.title": "研究一個主題",
+  "task.template.research.prompt": "幫我研究這個主題，把你找到的內容寫出來並附上來源： ",
+
+  "task.progress.working": "正在處理",
+  "task.progress.finishing": "正在收尾",
+  "task.progress.steps": "第 {{done}} 步，共 {{total}} 步",
 } satisfies Partial<Record<Keys, string>>

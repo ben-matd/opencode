@@ -1123,4 +1123,20 @@ export const dict = {
   "permission.ask.edit": "Ændre {{file}}",
   "permission.ask.edit.why": "Det erstatter det, der står i filen nu.",
   "permission.ask.generic": "Fortsætte med dette trin",
+
+  "task.templates.heading": "Eller start med en af disse",
+  "task.template.summarize.title": "Opsummer filer",
+  "task.template.summarize.prompt": "Læs filerne i dette arbejdsområde og skriv en opsummerende rapport til mig.",
+  "task.template.spreadsheet.title": "Byg et regneark",
+  "task.template.spreadsheet.prompt": "Træk tallene ud af disse filer og byg et regneark, jeg kan sortere og filtrere.",
+  "task.template.report.title": "Skriv et udkast til en rapport",
+  "task.template.report.prompt": "Skriv et udkast til en rapport ud fra indholdet i dette arbejdsområde. Spørg mig først om det, du har brug for at vide.",
+  "task.template.organize.title": "Ryd op i denne mappe",
+  "task.template.organize.prompt": "Ryd op i denne mappe i fornuftige undermapper og giv filerne klare navne. Fortæl mig strukturen, før du flytter noget.",
+  "task.template.research.title": "Undersøg et emne",
+  "task.template.research.prompt": "Undersøg dette emne og skriv, hvad du finder, med kilder: ",
+
+  "task.progress.working": "Arbejder på det",
+  "task.progress.finishing": "Afslutter",
+  "task.progress.steps": "Trin {{done}} af {{total}}",
 }

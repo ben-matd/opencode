@@ -1068,4 +1068,20 @@ export const dict = {
   "permission.ask.edit": "{{file}} ändern",
   "permission.ask.edit.why": "Damit wird der aktuelle Inhalt der Datei ersetzt.",
   "permission.ask.generic": "Mit diesem Schritt fortfahren",
+
+  "task.templates.heading": "Oder starten Sie hiermit",
+  "task.template.summarize.title": "Dateien zusammenfassen",
+  "task.template.summarize.prompt": "Lies die Dateien in diesem Arbeitsbereich und schreibe mir einen zusammenfassenden Bericht.",
+  "task.template.spreadsheet.title": "Tabelle erstellen",
+  "task.template.spreadsheet.prompt": "Zieh die Zahlen aus diesen Dateien und erstelle mir eine Tabelle, die ich sortieren und filtern kann.",
+  "task.template.report.title": "Bericht entwerfen",
+  "task.template.report.prompt": "Entwirf einen Bericht auf Basis dieses Arbeitsbereichs. Frag mich vorher, was du wissen musst.",
+  "task.template.organize.title": "Ordner aufräumen",
+  "task.template.organize.prompt": "Ordne diesen Ordner in sinnvolle Unterordner und gib den Dateien klare Namen. Sag mir die geplante Struktur, bevor du etwas verschiebst.",
+  "task.template.research.title": "Thema recherchieren",
+  "task.template.research.prompt": "Recherchiere dieses Thema für mich und fasse mit Quellen zusammen, was du findest: ",
+
+  "task.progress.working": "Ich arbeite daran",
+  "task.progress.finishing": "Wird abgeschlossen",
+  "task.progress.steps": "Schritt {{done}} von {{total}}",
 } satisfies Partial<Record<Keys, string>>

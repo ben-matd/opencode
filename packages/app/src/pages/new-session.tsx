@@ -7,6 +7,7 @@ import { useDialog } from "@opencode-ai/ui/context/dialog"
 import { Icon as IconV2 } from "@opencode-ai/ui/v2/icon"
 import { TooltipV2 } from "@opencode-ai/ui/v2/tooltip-v2"
 import { NewSessionDesignView } from "@/components/session"
+import { TaskTemplates } from "@/components/task-templates"
 import { PromptInputV2Composer, usePromptInputV2Controller } from "@/components/prompt-input-v2"
 import { StatusPopoverV2 } from "@/components/status-popover"
 import {
@@ -138,6 +139,11 @@ export default function NewSessionPage() {
     })
   })
 
+  const fillPrompt = (text: string) => {
+    prompt.set([{ type: "text", content: text, start: 0, end: text.length }], text.length)
+    promptInputV2Controller.restoreFocus()
+  }
+
   createEffect(() => {
     if (!prompt.ready()) return
     promptInputV2Controller.restoreFocus()
@@ -170,6 +176,9 @@ export default function NewSessionPage() {
               <div class={NEW_SESSION_CONTENT_WIDTH}>
                 <div class="flex flex-col gap-8">
                   <PromptInputV2Composer controller={promptInputV2Controller} />
+                  <Show when={projectController.selected()}>
+                    <TaskTemplates onSelect={fillPrompt} />
+                  </Show>
                   <Show when={projectController.empty()}>
                     <PromptProjectAddButton controller={projectController} />
                   </Show>
@@ -178,7 +187,11 @@ export default function NewSessionPage() {
                       <PromptProjectSelector controller={projectController} placement="bottom" />
                       <Show
                         when={showWorkspaceBar()}
-                        fallback={<PromptGitStatus branch={selectedBranch()} noGit={sync().project?.vcs !== "git"} />}
+                        fallback={
+                          <Show when={settings.visibility.developer()}>
+                            <PromptGitStatus branch={selectedBranch()} noGit={sync().project?.vcs !== "git"} />
+                          </Show>
+                        }
                       >
                         <PromptWorkspaceSelector
                           value={newSessionWorktree()}

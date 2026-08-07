@@ -612,6 +612,21 @@ export const dict = {
   "notification.session.error.title": "Conversation error",
   "notification.session.error.fallbackDescription": "An error occurred",
 
+  "task.progress.working": "Working on it",
+  "task.progress.finishing": "Wrapping up",
+  "task.progress.steps": "Step {{done}} of {{total}}",
+  "task.templates.heading": "Or start with one of these",
+  "task.template.summarize.title": "Summarize files",
+  "task.template.summarize.prompt": "Read the files in this workspace and write me a summary report of what they say.",
+  "task.template.spreadsheet.title": "Build a spreadsheet",
+  "task.template.spreadsheet.prompt": "Pull the figures out of these files and build me a spreadsheet I can sort and filter.",
+  "task.template.report.title": "Draft a report",
+  "task.template.report.prompt": "Draft a report based on what is in this workspace. Ask me anything you need to know first.",
+  "task.template.organize.title": "Organize this folder",
+  "task.template.organize.prompt": "Organize this folder into sensible subfolders and give the files clear names. Tell me the shape you made before you move anything.",
+  "task.template.research.title": "Research a topic",
+  "task.template.research.prompt": "Research this topic for me and write up what you find, with sources: ",
+
   "welcome.title": "Welcome to Cowork",
   "welcome.subtitle":
     "Cowork reads, writes, and organizes the files in a folder you choose, and gives you back finished documents. Two quick things before you start.",
