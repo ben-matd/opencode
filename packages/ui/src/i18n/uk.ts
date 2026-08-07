@@ -202,4 +202,16 @@ export const dict: Record<string, string> = {
   "ui.tool.shell.convert": "Перетворення файлів",
   "ui.tool.shell.process": "Обробка файлів",
   "ui.tool.shell.generic": "Робота з файлами",
+
+  "ui.artifact.open": "Відкрити",
+  "ui.artifact.reveal": "Показати в теці",
+  "ui.artifact.preview.unavailable": "Попередній перегляд недоступний",
+  "ui.artifact.kind.markdown": "Нотатки",
+  "ui.artifact.kind.text": "Текст",
+  "ui.artifact.kind.spreadsheet": "Таблиця",
+  "ui.artifact.kind.document": "Документ",
+  "ui.artifact.kind.pdf": "PDF",
+  "ui.artifact.kind.slides": "Презентація",
+  "ui.artifact.kind.image": "Зображення",
+  "ui.artifact.kind.file": "Файл",
 }

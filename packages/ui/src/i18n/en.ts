@@ -201,4 +201,16 @@ export const dict: Record<string, string> = {
   "ui.question.multiHint": "Select all answers that apply",
   "ui.question.singleHint": "Select one answer",
   "ui.question.custom.placeholder": "Type your answer...",
+
+  "ui.artifact.open": "Open",
+  "ui.artifact.reveal": "Show in folder",
+  "ui.artifact.preview.unavailable": "No preview available",
+  "ui.artifact.kind.markdown": "Notes",
+  "ui.artifact.kind.text": "Text",
+  "ui.artifact.kind.spreadsheet": "Spreadsheet",
+  "ui.artifact.kind.document": "Document",
+  "ui.artifact.kind.pdf": "PDF",
+  "ui.artifact.kind.slides": "Slides",
+  "ui.artifact.kind.image": "Image",
+  "ui.artifact.kind.file": "File",
 }

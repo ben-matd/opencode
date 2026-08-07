@@ -203,4 +203,16 @@ export const dict = {
   "ui.tool.shell.convert": "Pretvaranje datoteka",
   "ui.tool.shell.process": "Obrada datoteka",
   "ui.tool.shell.generic": "Rad na datotekama",
+
+  "ui.artifact.open": "Otvori",
+  "ui.artifact.reveal": "Prikaži u mapi",
+  "ui.artifact.preview.unavailable": "Pregled nije dostupan",
+  "ui.artifact.kind.markdown": "Bilješke",
+  "ui.artifact.kind.text": "Tekst",
+  "ui.artifact.kind.spreadsheet": "Tabela",
+  "ui.artifact.kind.document": "Dokument",
+  "ui.artifact.kind.pdf": "PDF",
+  "ui.artifact.kind.slides": "Prezentacija",
+  "ui.artifact.kind.image": "Slika",
+  "ui.artifact.kind.file": "Datoteka",
 } satisfies Partial<Record<Keys, string>>

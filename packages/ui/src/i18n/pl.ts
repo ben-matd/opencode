@@ -198,4 +198,16 @@ export const dict = {
   "ui.tool.shell.convert": "Konwertowanie plików",
   "ui.tool.shell.process": "Przetwarzanie plików",
   "ui.tool.shell.generic": "Praca nad plikami",
+
+  "ui.artifact.open": "Otwórz",
+  "ui.artifact.reveal": "Pokaż w folderze",
+  "ui.artifact.preview.unavailable": "Podgląd niedostępny",
+  "ui.artifact.kind.markdown": "Notatki",
+  "ui.artifact.kind.text": "Tekst",
+  "ui.artifact.kind.spreadsheet": "Arkusz",
+  "ui.artifact.kind.document": "Dokument",
+  "ui.artifact.kind.pdf": "PDF",
+  "ui.artifact.kind.slides": "Prezentacja",
+  "ui.artifact.kind.image": "Obraz",
+  "ui.artifact.kind.file": "Plik",
 }

@@ -44,6 +44,7 @@ import { Icon } from "@opencode-ai/ui/icon"
 import { ToolErrorCard } from "./tool-error-card"
 import { Checkbox } from "@opencode-ai/ui/checkbox"
 import { DiffChanges } from "@opencode-ai/ui/diff-changes"
+import { ArtifactCard } from "./artifact-card"
 import { Markdown } from "./markdown"
 import { ImagePreview } from "@opencode-ai/ui/image-preview"
 import { getDirectory as _getDirectory, getFilename } from "@opencode-ai/core/util/path"
@@ -2278,6 +2279,9 @@ ToolRegistry.register({
             </div>
           }
         >
+          <Show when={!developer() && !pending() && path()}>
+            <ArtifactCard path={path()} previewOff />
+          </Show>
           <Show when={developer() && path()}>
             <ToolFileAccordion
               path={path()}
@@ -2347,6 +2351,9 @@ ToolRegistry.register({
             </div>
           }
         >
+          <Show when={!developer() && !pending() && path()}>
+            <ArtifactCard path={path()} content={props.input.content} />
+          </Show>
           <Show when={developer() && props.input.content && path()}>
             <ToolFileAccordion path={path()}>
               <div data-component="write-content">

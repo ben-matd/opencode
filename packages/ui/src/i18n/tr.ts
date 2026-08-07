@@ -205,4 +205,16 @@ export const dict = {
   "ui.tool.shell.convert": "Dosyalar dönüştürülüyor",
   "ui.tool.shell.process": "Dosyalar işleniyor",
   "ui.tool.shell.generic": "Dosyalar üzerinde çalışılıyor",
+
+  "ui.artifact.open": "Aç",
+  "ui.artifact.reveal": "Klasörde göster",
+  "ui.artifact.preview.unavailable": "Önizleme yok",
+  "ui.artifact.kind.markdown": "Notlar",
+  "ui.artifact.kind.text": "Metin",
+  "ui.artifact.kind.spreadsheet": "Elektronik tablo",
+  "ui.artifact.kind.document": "Belge",
+  "ui.artifact.kind.pdf": "PDF",
+  "ui.artifact.kind.slides": "Sunum",
+  "ui.artifact.kind.image": "Görsel",
+  "ui.artifact.kind.file": "Dosya",
 } satisfies Partial<Record<Keys, string>>

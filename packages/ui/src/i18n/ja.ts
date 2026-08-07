@@ -198,4 +198,16 @@ export const dict = {
   "ui.tool.shell.convert": "ファイルを変換中",
   "ui.tool.shell.process": "ファイルを処理中",
   "ui.tool.shell.generic": "ファイルを操作中",
+
+  "ui.artifact.open": "開く",
+  "ui.artifact.reveal": "フォルダに表示",
+  "ui.artifact.preview.unavailable": "プレビューはありません",
+  "ui.artifact.kind.markdown": "メモ",
+  "ui.artifact.kind.text": "テキスト",
+  "ui.artifact.kind.spreadsheet": "表計算",
+  "ui.artifact.kind.document": "文書",
+  "ui.artifact.kind.pdf": "PDF",
+  "ui.artifact.kind.slides": "スライド",
+  "ui.artifact.kind.image": "画像",
+  "ui.artifact.kind.file": "ファイル",
 }

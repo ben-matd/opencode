@@ -203,4 +203,16 @@ export const dict: Record<Keys, string> = {
   "ui.tool.shell.convert": "Konverterer filer",
   "ui.tool.shell.process": "Behandler filer",
   "ui.tool.shell.generic": "Jobber med filer",
+
+  "ui.artifact.open": "Åpne",
+  "ui.artifact.reveal": "Vis i mappe",
+  "ui.artifact.preview.unavailable": "Ingen forhåndsvisning",
+  "ui.artifact.kind.markdown": "Notater",
+  "ui.artifact.kind.text": "Tekst",
+  "ui.artifact.kind.spreadsheet": "Regneark",
+  "ui.artifact.kind.document": "Dokument",
+  "ui.artifact.kind.pdf": "PDF",
+  "ui.artifact.kind.slides": "Presentasjon",
+  "ui.artifact.kind.image": "Bilde",
+  "ui.artifact.kind.file": "Fil",
 }

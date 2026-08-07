@@ -1,0 +1,62 @@
+[data-component="artifact-card"] {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 4px 0 8px;
+  padding: 10px 12px;
+  border: 1px solid var(--v2-border-border-faint, var(--border-weak));
+  border-radius: 8px;
+  background: var(--v2-background-bg-subtle, transparent);
+
+  [data-slot="artifact-card-header"] {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    min-width: 0;
+  }
+
+  [data-slot="artifact-card-identity"] {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    min-width: 0;
+  }
+
+  [data-slot="artifact-card-name"] {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: var(--v2-text-text-base, var(--text-strong));
+    font-weight: 500;
+  }
+
+  [data-slot="artifact-card-kind"] {
+    flex-shrink: 0;
+    color: var(--v2-text-text-faint, var(--text-weak));
+    font-size: 12px;
+  }
+
+  [data-slot="artifact-card-actions"] {
+    display: flex;
+    flex-shrink: 0;
+    gap: 6px;
+  }
+
+  [data-slot="artifact-card-preview"] {
+    max-height: 320px;
+    overflow: auto;
+    padding-top: 4px;
+    border-top: 1px solid var(--v2-border-border-faint, var(--border-weak));
+  }
+
+  [data-slot="artifact-card-preview"] img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  [data-slot="artifact-card-note"] {
+    color: var(--v2-text-text-faint, var(--text-weak));
+    font-size: 12px;
+  }
+}

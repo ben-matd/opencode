@@ -13,6 +13,8 @@ import type { ServerConnection } from "@/context/server"
 import { sessionHref } from "@/utils/session-route"
 import { useServerSync } from "@/context/server-sync"
 import { useSettings } from "@/context/settings"
+import { usePlatform } from "@/context/platform"
+import { useSDK } from "@/context/sdk"
 
 export function DirectoryDataProvider(
   props: ParentProps<{
@@ -27,6 +29,31 @@ export function DirectoryDataProvider(
   const sync = useSync()
   const serverSync = useServerSync()
   const settings = useSettings()
+  const platform = usePlatform()
+  const sdk = useSDK()
+
+  // Handing a produced file to the operating system is the whole point of an
+  // artifact card for a .docx or .xlsx — there is nothing useful to render
+  // inline, but "Open" and "Show in folder" do exactly what the person wants.
+  const canOpenFiles = () => platform.platform === "desktop" && !!platform.openPath
+  const readFile = (file: string) =>
+    sdk()
+      .client.file.read({ path: file })
+      .then((response) => response.data)
+      .catch((error: unknown) => {
+        console.debug("[artifact] failed to read file", { file, error })
+        return undefined
+      })
+  const openFile = (file: string) => {
+    void platform.openPath?.(file).catch((error: unknown) => {
+      console.error("[artifact] failed to open file", { file, error })
+    })
+  }
+  const revealFile = (file: string) => {
+    void platform.revealPath?.(file).catch((error: unknown) => {
+      console.error("[artifact] failed to reveal file", { file, error })
+    })
+  }
   const directory = () => (typeof props.directory === "function" ? props.directory() : props.directory)
   const slug = createMemo(() => base64Encode(directory()))
   const href = (sessionID: string) => {
@@ -66,6 +93,10 @@ export function DirectoryDataProvider(
           data={sync().data}
           directory={directory}
           developer={settings.visibility.developer}
+          canOpenFiles={canOpenFiles}
+          onOpenFile={openFile}
+          onRevealFile={revealFile}
+          onReadFile={readFile}
           onNavigateToSession={(sessionID: string) => navigate(href(sessionID))}
           onSessionHref={href}
         >

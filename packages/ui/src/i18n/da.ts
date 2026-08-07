@@ -198,4 +198,16 @@ export const dict = {
   "ui.tool.shell.convert": "Konverterer filer",
   "ui.tool.shell.process": "Behandler filer",
   "ui.tool.shell.generic": "Arbejder med filer",
+
+  "ui.artifact.open": "Åbn",
+  "ui.artifact.reveal": "Vis i mappe",
+  "ui.artifact.preview.unavailable": "Ingen forhåndsvisning",
+  "ui.artifact.kind.markdown": "Noter",
+  "ui.artifact.kind.text": "Tekst",
+  "ui.artifact.kind.spreadsheet": "Regneark",
+  "ui.artifact.kind.document": "Dokument",
+  "ui.artifact.kind.pdf": "PDF",
+  "ui.artifact.kind.slides": "Præsentation",
+  "ui.artifact.kind.image": "Billede",
+  "ui.artifact.kind.file": "Fil",
 }

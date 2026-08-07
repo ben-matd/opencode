@@ -200,4 +200,16 @@ export const dict = {
   "ui.tool.shell.convert": "파일 변환 중",
   "ui.tool.shell.process": "파일 처리 중",
   "ui.tool.shell.generic": "파일 작업 중",
+
+  "ui.artifact.open": "열기",
+  "ui.artifact.reveal": "폴더에서 보기",
+  "ui.artifact.preview.unavailable": "미리 보기 없음",
+  "ui.artifact.kind.markdown": "메모",
+  "ui.artifact.kind.text": "텍스트",
+  "ui.artifact.kind.spreadsheet": "스프레드시트",
+  "ui.artifact.kind.document": "문서",
+  "ui.artifact.kind.pdf": "PDF",
+  "ui.artifact.kind.slides": "슬라이드",
+  "ui.artifact.kind.image": "이미지",
+  "ui.artifact.kind.file": "파일",
 }

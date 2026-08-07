@@ -198,4 +198,16 @@ export const dict = {
   "ui.tool.shell.convert": "Преобразование файлов",
   "ui.tool.shell.process": "Обработка файлов",
   "ui.tool.shell.generic": "Работа с файлами",
+
+  "ui.artifact.open": "Открыть",
+  "ui.artifact.reveal": "Показать в папке",
+  "ui.artifact.preview.unavailable": "Предпросмотр недоступен",
+  "ui.artifact.kind.markdown": "Заметки",
+  "ui.artifact.kind.text": "Текст",
+  "ui.artifact.kind.spreadsheet": "Таблица",
+  "ui.artifact.kind.document": "Документ",
+  "ui.artifact.kind.pdf": "PDF",
+  "ui.artifact.kind.slides": "Презентация",
+  "ui.artifact.kind.image": "Изображение",
+  "ui.artifact.kind.file": "Файл",
 }

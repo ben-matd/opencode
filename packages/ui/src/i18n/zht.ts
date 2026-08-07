@@ -202,4 +202,16 @@ export const dict = {
   "ui.tool.shell.convert": "正在轉換檔案",
   "ui.tool.shell.process": "正在處理檔案",
   "ui.tool.shell.generic": "正在處理檔案",
+
+  "ui.artifact.open": "開啟",
+  "ui.artifact.reveal": "在資料夾中顯示",
+  "ui.artifact.preview.unavailable": "無法預覽",
+  "ui.artifact.kind.markdown": "筆記",
+  "ui.artifact.kind.text": "文字",
+  "ui.artifact.kind.spreadsheet": "試算表",
+  "ui.artifact.kind.document": "文件",
+  "ui.artifact.kind.pdf": "PDF",
+  "ui.artifact.kind.slides": "投影片",
+  "ui.artifact.kind.image": "圖片",
+  "ui.artifact.kind.file": "檔案",
 } satisfies Partial<Record<Keys, string>>

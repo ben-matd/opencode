@@ -1,4 +1,12 @@
-import type { Message, Session, Part, SnapshotFileDiff, SessionStatus, Provider } from "@opencode-ai/sdk/v2"
+import type {
+  Message,
+  Session,
+  Part,
+  SnapshotFileDiff,
+  SessionStatus,
+  Provider,
+  FileContent,
+} from "@opencode-ai/sdk/v2"
 import { createSimpleContext } from "@opencode-ai/ui/context"
 import { PreloadMultiFileDiffResult } from "@pierre/diffs/ssr"
 
@@ -52,6 +60,11 @@ export const { use: useData, provider: DataProvider } = createSimpleContext({
      * plain-language activity cards.
      */
     developer?: () => boolean
+    /** Whether this client can hand a file to the operating system. */
+    canOpenFiles?: () => boolean
+    onOpenFile?: (path: string) => void
+    onRevealFile?: (path: string) => void
+    onReadFile?: (path: string) => Promise<FileContent | undefined>
     onNavigateToSession?: NavigateToSessionFn
     onSessionHref?: SessionHrefFn
   }) => {
@@ -63,6 +76,12 @@ export const { use: useData, provider: DataProvider } = createSimpleContext({
         return props.directory
       },
       developer: () => props.developer?.() ?? false,
+      canOpenFiles: () => props.canOpenFiles?.() ?? false,
+      openFile: (path: string) => props.onOpenFile?.(path),
+      revealFile: (path: string) => props.onRevealFile?.(path),
+      get readFile() {
+        return props.onReadFile
+      },
       navigateToSession: props.onNavigateToSession,
       sessionHref: props.onSessionHref,
     }

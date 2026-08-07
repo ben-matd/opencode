@@ -200,4 +200,16 @@ export const dict = {
   "ui.tool.shell.convert": "กำลังแปลงไฟล์",
   "ui.tool.shell.process": "กำลังประมวลผลไฟล์",
   "ui.tool.shell.generic": "กำลังจัดการไฟล์",
+
+  "ui.artifact.open": "เปิด",
+  "ui.artifact.reveal": "แสดงในโฟลเดอร์",
+  "ui.artifact.preview.unavailable": "ไม่มีตัวอย่าง",
+  "ui.artifact.kind.markdown": "บันทึก",
+  "ui.artifact.kind.text": "ข้อความ",
+  "ui.artifact.kind.spreadsheet": "สเปรดชีต",
+  "ui.artifact.kind.document": "เอกสาร",
+  "ui.artifact.kind.pdf": "PDF",
+  "ui.artifact.kind.slides": "สไลด์",
+  "ui.artifact.kind.image": "รูปภาพ",
+  "ui.artifact.kind.file": "ไฟล์",
 }

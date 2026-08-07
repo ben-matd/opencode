@@ -205,4 +205,16 @@ export const dict = {
   "ui.tool.shell.convert": "Dateien umwandeln",
   "ui.tool.shell.process": "Dateien verarbeiten",
   "ui.tool.shell.generic": "An Dateien arbeiten",
+
+  "ui.artifact.open": "Öffnen",
+  "ui.artifact.reveal": "Im Ordner zeigen",
+  "ui.artifact.preview.unavailable": "Keine Vorschau verfügbar",
+  "ui.artifact.kind.markdown": "Notizen",
+  "ui.artifact.kind.text": "Text",
+  "ui.artifact.kind.spreadsheet": "Tabelle",
+  "ui.artifact.kind.document": "Dokument",
+  "ui.artifact.kind.pdf": "PDF",
+  "ui.artifact.kind.slides": "Präsentation",
+  "ui.artifact.kind.image": "Bild",
+  "ui.artifact.kind.file": "Datei",
 } satisfies Partial<Record<Keys, string>>
