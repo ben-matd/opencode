@@ -692,7 +692,7 @@ export const { use: useLayout, provider: LayoutProvider } = createSimpleContext(
       fileTree: {
         opened: createMemo(() => store.fileTree?.opened ?? true),
         width: createMemo(() => store.fileTree?.width ?? DEFAULT_FILE_TREE_WIDTH),
-        tab: createMemo(() => store.fileTree?.tab ?? "changes"),
+        tab: createMemo(() => store.fileTree?.tab ?? "all"),
         setTab(tab: "changes" | "all") {
           if (!store.fileTree) {
             setStore("fileTree", { opened: true, width: DEFAULT_FILE_TREE_WIDTH, tab })
@@ -702,7 +702,7 @@ export const { use: useLayout, provider: LayoutProvider } = createSimpleContext(
         },
         open() {
           if (!store.fileTree) {
-            setStore("fileTree", { opened: true, width: DEFAULT_FILE_TREE_WIDTH, tab: "changes" })
+            setStore("fileTree", { opened: true, width: DEFAULT_FILE_TREE_WIDTH, tab: "all" })
             return
           }
           setStore("fileTree", "opened", true)

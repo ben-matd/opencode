@@ -193,10 +193,14 @@ export function SessionSidePanel(props: {
   const activeTab = tabState.activeTab
   const activeFileTab = tabState.activeFileTab
 
-  const fileTreeTab = () => layout.fileTree.tab()
+  // The "changes" tab lists files touched according to version control, which
+  // is only meaningful to a developer. Outside developer mode the panel is just
+  // the workspace's files, live.
+  const fileTreeTab = () => (settings.visibility.developer() ? layout.fileTree.tab() : "all")
 
   const setFileTreeTabValue = (value: string) => {
     if (value !== "changes" && value !== "all") return
+    if (value === "changes" && !settings.visibility.developer()) return
     layout.fileTree.setTab(value)
   }
 
@@ -787,6 +791,7 @@ export function SessionSidePanel(props: {
                     data-scope="filetree"
                   >
                     <Tabs.List>
+                      <Show when={settings.visibility.developer()}>
                       <Tabs.Trigger value="changes" class="flex-1" classes={{ button: "w-full" }}>
                         <Show
                           when={settings.general.newLayoutDesigns()}
@@ -802,6 +807,7 @@ export function SessionSidePanel(props: {
                           {language.t("session.review.filesChanged", { count: props.reviewCount() })}
                         </Show>
                       </Tabs.Trigger>
+                      </Show>
                       <Tabs.Trigger value="all" class="flex-1" classes={{ button: "w-full" }}>
                         {language.t("session.files.all")}
                       </Tabs.Trigger>
