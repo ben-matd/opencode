@@ -34,6 +34,13 @@ const CUSTOMIZE_OPENCODE_SKILL_DESCRIPTION =
   "Use ONLY when the user is editing or creating opencode's own configuration: opencode.json, opencode.jsonc, files under .opencode/, or files under ~/.config/opencode/. Also use when creating or fixing opencode agents, subagents, skills, plugins, MCP servers, or permission rules. Do not use for the user's own application code, or for any project that is not configuring opencode itself."
 const CUSTOMIZE_OPENCODE_SKILL_BODY = SkillPlugin.CustomizeOpencodeContent
 
+// Built-in skill for knowledge work. Producing a .docx or .xlsx is the normal
+// end of a task here, and models otherwise guess at library APIs and conversion
+// routes. This gives them the actual recipes plus the deliverables/ convention.
+const PRODUCE_DOCUMENTS_SKILL_NAME = SkillPlugin.ProduceDocumentsName
+const PRODUCE_DOCUMENTS_SKILL_DESCRIPTION = SkillPlugin.ProduceDocumentsDescription
+const PRODUCE_DOCUMENTS_SKILL_BODY = SkillPlugin.ProduceDocumentsContent
+
 export const Info = Schema.Struct({
   name: Schema.String,
   description: Schema.optional(Schema.String),
@@ -280,6 +287,12 @@ const layer = Layer.effect(
           description: CUSTOMIZE_OPENCODE_SKILL_DESCRIPTION,
           location: "<built-in>",
           content: CUSTOMIZE_OPENCODE_SKILL_BODY,
+        }
+        s.skills[PRODUCE_DOCUMENTS_SKILL_NAME] = {
+          name: PRODUCE_DOCUMENTS_SKILL_NAME,
+          description: PRODUCE_DOCUMENTS_SKILL_DESCRIPTION,
+          location: "<built-in>",
+          content: PRODUCE_DOCUMENTS_SKILL_BODY,
         }
         yield* loadSkills(s, yield* InstanceState.get(discovered), events)
         return s
