@@ -1,7 +1,12 @@
 import { describe, expect, test } from "bun:test"
 import type { SessionNotFoundError } from "@opencode-ai/sdk/v2/client"
 import type { ConfigInvalidError, ProviderModelNotFoundError } from "./server-errors"
-import { formatServerError, isSessionNotFoundError, parseReadableConfigInvalidError } from "./server-errors"
+import {
+  formatServerError,
+  isSessionNotFoundError,
+  parseReadableConfigInvalidError,
+  plainLanguageErrorKey,
+} from "./server-errors"
 
 function fill(text: string, vars?: Record<string, string | number>) {
   if (!vars) return text
@@ -171,5 +176,38 @@ describe("isSessionNotFoundError", () => {
         "ses_tab",
       ),
     ).toBe(false)
+  })
+})
+
+describe("plainLanguageErrorKey", () => {
+  test("recognizes a rejected API key by status and by message", () => {
+    expect(plainLanguageErrorKey({ status: 401 })).toBe("error.plain.apiKey")
+    expect(plainLanguageErrorKey({ statusCode: 403 })).toBe("error.plain.apiKey")
+    expect(plainLanguageErrorKey(new Error("Incorrect API key provided"))).toBe("error.plain.apiKey")
+  })
+
+  test("separates rate limiting from running out of credit", () => {
+    expect(plainLanguageErrorKey({ status: 429 })).toBe("error.plain.rateLimit")
+    expect(plainLanguageErrorKey(new Error("You exceeded your current quota"))).toBe("error.plain.quota")
+  })
+
+  test("recognizes a missing folder and a refused connection", () => {
+    expect(plainLanguageErrorKey({ code: "ENOENT", message: "no such file or directory" })).toBe(
+      "error.plain.folderMissing",
+    )
+    expect(plainLanguageErrorKey(new Error("fetch failed"))).toBe("error.plain.offline")
+    expect(plainLanguageErrorKey({ code: "EACCES" })).toBe("error.plain.permissionDenied")
+  })
+
+  test("leaves anything it does not recognize alone", () => {
+    expect(plainLanguageErrorKey(new Error("the model returned malformed JSON"))).toBeUndefined()
+    expect(plainLanguageErrorKey(undefined)).toBeUndefined()
+  })
+
+  test("formatServerError uses the plain sentence when a translator is available", () => {
+    const translate = (key: string) => (key === "error.plain.apiKey" ? "Reconnect the service." : key)
+    expect(formatServerError(new Error("invalid_api_key"), translate)).toBe("Reconnect the service.")
+    // Without a translator the original message survives rather than a key leaking out.
+    expect(formatServerError(new Error("invalid_api_key"))).toBe("invalid_api_key")
   })
 })

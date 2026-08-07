@@ -1155,4 +1155,12 @@ export const dict = {
   "task.progress.working": "Trabajando en ello",
   "task.progress.finishing": "Terminando",
   "task.progress.steps": "Paso {{done}} de {{total}}",
+
+  "error.plain.apiKey": "El servicio de IA no aceptó tu clave. Abre Ajustes y vuelve a conectar el servicio.",
+  "error.plain.rateLimit": "El servicio de IA pide que vayamos más despacio. Espera un minuto e inténtalo de nuevo.",
+  "error.plain.quota": "Tu cuenta del servicio de IA se ha quedado sin saldo por ahora.",
+  "error.plain.offline": "No se pudo contactar con el servicio de IA. Comprueba tu conexión a internet e inténtalo de nuevo.",
+  "error.plain.folderMissing": "Esa carpeta ya no está. Puede que la hayan movido, renombrado o eliminado.",
+  "error.plain.permissionDenied": "Cowork no tiene permiso para abrir ese archivo o carpeta en este ordenador.",
+  "error.plain.noProvider": "Todavía no hay ningún servicio de IA conectado. Abre Ajustes para conectar uno.",
 }

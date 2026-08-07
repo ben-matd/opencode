@@ -423,3 +423,59 @@ thorough one.
 | 2.6 tasks/templates    | `pages/new-session.tsx`, `pages/home.tsx`, `components/prompt-input*`                                                                     |
 | 2.7 rebrand            | §8                                                                                                                                        |
 | 3 polish               | `pages/home.tsx` (history), `pages/error-description.ts`, `README.md`                                                                     |
+
+---
+
+## 11. What the transformation actually landed
+
+Written after the fact, so this document stays true to the code. Sections 1–9
+describe the codebase as it was mapped; this section records where the plan
+diverged and what the new entry points are.
+
+### New files
+
+| File                                                   | Purpose                                                        |
+| ------------------------------------------------------ | -------------------------------------------------------------- |
+| `packages/opencode/src/session/prompt/cowork.txt`      | The default system prompt (§3.1 dispatch now returns this)     |
+| `packages/opencode/src/config/developer-mode.ts`       | Reads `developer_mode` from an already-acquired Config service |
+| `packages/core/src/plugin/skill/produce-documents.md`  | Built-in skill: document formats, recipes, conversion routes   |
+| `packages/app/src/pages/welcome.tsx`                   | First-run screen — folder + AI service                         |
+| `packages/app/src/components/task-templates.tsx`       | Starting points on the new-task screen                         |
+| `packages/app/src/components/task-progress.tsx`        | Step counter and Stop, above the composer                      |
+| `packages/session-ui/src/components/artifact-card.tsx` | Produced-file preview: markdown, images, open / reveal         |
+| `packages/desktop/scripts/generate-icons.ts`           | Rasterizes the app mark to PNG / .ico / .icns                  |
+
+### Divergences from the plan
+
+- **1.1** used `SystemPrompt.provider(model, developerMode)` rather than an
+  agent-level `prompt`, so the knowledge-work identity applies to every agent
+  including subagents, and the per-model prompts remain reachable.
+- **1.3** shipped as a built-in **skill** rather than a new tool. PDF reading
+  already worked (`tool/read.ts` returns PDFs as attachments); what was missing
+  was knowledge of how to _produce_ documents, which is instructions, not a
+  tool. Registered in both `packages/opencode/src/skill/index.ts` and
+  `packages/core/src/plugin/skill.ts`.
+- **1.4** needed the Config service acquired at tool-construction time, not
+  inside `execute` — a tool's `execute` must have no service requirements
+  (`Tool.define` enforces `never`). Hence the shape of `developer-mode.ts`.
+- **2.1** did not use `main/onboarding.ts` for the screen. That file now only
+  marks first launch complete; the screen lives in the web app so it works
+  outside Electron too. Desktop no longer creates a "Default Project" folder.
+- **2.3** did not need a separate developer/non-developer title set — the shared
+  transcript renderer reads a `developer` flag threaded through the session-ui
+  Data context (`packages/session-ui/src/context/data.tsx`), which also carries
+  the file capabilities 2.4 needs.
+- **2.5** put the plain-language wording in
+  `pages/session/composer/session-permission-dock.tsx`; engine defaults live in
+  the `guarded` ruleset in `agent/agent.ts`, keyed on `ShellID.ToolID`.
+- **2.6** has no pause. The engine exposes abort, not a resumable pause; the
+  progress strip offers Stop only.
+- **2.7** kept the `ai.opencode.desktop` app id and the `opencode://` scheme.
+  Changing either orphans existing installs and deep links; only the visible
+  product name changed.
+
+### Verification
+
+`bun turbo typecheck` builds every workspace in parallel and is killed by the
+OOM killer on a machine with ~11 GB. Per-package `bun run typecheck` is the
+reliable gate — see the README for the list.

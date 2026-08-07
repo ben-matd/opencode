@@ -580,6 +580,13 @@ export const dict = {
   "error.childStore.storeCreateFailed": "Failed to create store",
   "directory.error.invalidUrl": "Invalid directory in URL.",
 
+  "error.plain.apiKey": "The AI service didn't accept your key. Open Settings and connect the service again.",
+  "error.plain.rateLimit": "The AI service is asking us to slow down. Wait a minute and try again.",
+  "error.plain.quota": "Your AI service account is out of credit for now.",
+  "error.plain.offline": "Couldn't reach the AI service. Check your internet connection and try again.",
+  "error.plain.folderMissing": "That folder isn't there any more. It may have been moved, renamed, or deleted.",
+  "error.plain.permissionDenied": "Cowork isn't allowed to open that file or folder on this computer.",
+  "error.plain.noProvider": "No AI service is connected yet. Open Settings to connect one.",
   "error.chain.unknown": "Unknown error",
   "error.server.invalidConfiguration": "Invalid configuration",
   "error.chain.causedBy": "Caused by:",

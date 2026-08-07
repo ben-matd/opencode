@@ -1125,4 +1125,12 @@ export const dict = {
   "task.progress.working": "正在处理",
   "task.progress.finishing": "正在收尾",
   "task.progress.steps": "第 {{done}} 步，共 {{total}} 步",
+
+  "error.plain.apiKey": "AI 服务未接受你的密钥。打开设置并重新连接该服务。",
+  "error.plain.rateLimit": "AI 服务要求我们放慢速度。等一分钟后再试。",
+  "error.plain.quota": "你的 AI 服务账户当前余额不足。",
+  "error.plain.offline": "无法连接到 AI 服务。请检查网络连接后重试。",
+  "error.plain.folderMissing": "那个文件夹已经不在了。它可能被移动、重命名或删除了。",
+  "error.plain.permissionDenied": "Cowork 没有权限在这台电脑上打开该文件或文件夹。",
+  "error.plain.noProvider": "还没有连接任何 AI 服务。打开设置连接一个。",
 } satisfies Partial<Record<Keys, string>>

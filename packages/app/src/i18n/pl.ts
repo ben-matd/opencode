@@ -1071,4 +1071,12 @@ export const dict = {
   "task.progress.working": "Pracuję nad tym",
   "task.progress.finishing": "Kończę",
   "task.progress.steps": "Krok {{done}} z {{total}}",
+
+  "error.plain.apiKey": "Usługa AI nie przyjęła Twojego klucza. Otwórz Ustawienia i połącz usługę ponownie.",
+  "error.plain.rateLimit": "Usługa AI prosi o zwolnienie tempa. Odczekaj minutę i spróbuj ponownie.",
+  "error.plain.quota": "Na Twoim koncie w usłudze AI chwilowo brakuje środków.",
+  "error.plain.offline": "Nie udało się połączyć z usługą AI. Sprawdź połączenie z internetem i spróbuj ponownie.",
+  "error.plain.folderMissing": "Tego folderu już nie ma. Mógł zostać przeniesiony, przemianowany lub usunięty.",
+  "error.plain.permissionDenied": "Cowork nie ma uprawnień, by otworzyć ten plik lub folder na tym komputerze.",
+  "error.plain.noProvider": "Nie podłączono jeszcze żadnej usługi AI. Otwórz Ustawienia, aby to zrobić.",
 }

@@ -1062,4 +1062,12 @@ export const dict = {
   "task.progress.working": "작업 중입니다",
   "task.progress.finishing": "마무리하는 중",
   "task.progress.steps": "{{total}}단계 중 {{done}}단계",
+
+  "error.plain.apiKey": "AI 서비스가 키를 받아들이지 않았습니다. 설정을 열고 서비스를 다시 연결해 주세요.",
+  "error.plain.rateLimit": "AI 서비스가 속도를 늦춰 달라고 합니다. 1분 정도 기다렸다가 다시 시도해 주세요.",
+  "error.plain.quota": "AI 서비스 계정의 잔액이 지금은 없습니다.",
+  "error.plain.offline": "AI 서비스에 연결할 수 없었습니다. 인터넷 연결을 확인하고 다시 시도해 주세요.",
+  "error.plain.folderMissing": "그 폴더가 더 이상 없습니다. 옮겨졌거나 이름이 바뀌었거나 삭제되었을 수 있습니다.",
+  "error.plain.permissionDenied": "이 컴퓨터에서 해당 파일이나 폴더를 열 권한이 Cowork에 없습니다.",
+  "error.plain.noProvider": "아직 연결된 AI 서비스가 없습니다. 설정을 열어 연결해 주세요.",
 }

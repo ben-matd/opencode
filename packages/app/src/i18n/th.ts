@@ -1134,4 +1134,12 @@ export const dict = {
   "task.progress.working": "กำลังดำเนินการ",
   "task.progress.finishing": "กำลังสรุปงาน",
   "task.progress.steps": "ขั้นที่ {{done}} จาก {{total}}",
+
+  "error.plain.apiKey": "บริการ AI ไม่รับคีย์ของคุณ เปิดการตั้งค่าแล้วเชื่อมต่อบริการอีกครั้ง",
+  "error.plain.rateLimit": "บริการ AI ขอให้ช้าลง รอสักครู่แล้วลองใหม่",
+  "error.plain.quota": "บัญชีบริการ AI ของคุณไม่มีเครดิตเหลืออยู่ในตอนนี้",
+  "error.plain.offline": "ติดต่อบริการ AI ไม่ได้ ตรวจสอบการเชื่อมต่ออินเทอร์เน็ตแล้วลองใหม่",
+  "error.plain.folderMissing": "ไม่พบโฟลเดอร์นั้นแล้ว อาจถูกย้าย เปลี่ยนชื่อ หรือลบไป",
+  "error.plain.permissionDenied": "Cowork ไม่ได้รับอนุญาตให้เปิดไฟล์หรือโฟลเดอร์นั้นบนคอมพิวเตอร์เครื่องนี้",
+  "error.plain.noProvider": "ยังไม่ได้เชื่อมต่อบริการ AI เปิดการตั้งค่าเพื่อเชื่อมต่อ",
 }

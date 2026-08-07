@@ -1139,4 +1139,12 @@ export const dict = {
   "task.progress.working": "Arbejder på det",
   "task.progress.finishing": "Afslutter",
   "task.progress.steps": "Trin {{done}} af {{total}}",
+
+  "error.plain.apiKey": "AI-tjenesten godtog ikke din nøgle. Åbn Indstillinger og forbind tjenesten igen.",
+  "error.plain.rateLimit": "AI-tjenesten beder os om at sætte farten ned. Vent et minut, og prøv igen.",
+  "error.plain.quota": "Din konto hos AI-tjenesten er løbet tør for kredit lige nu.",
+  "error.plain.offline": "Kunne ikke nå AI-tjenesten. Tjek din internetforbindelse, og prøv igen.",
+  "error.plain.folderMissing": "Den mappe findes ikke længere. Den er måske flyttet, omdøbt eller slettet.",
+  "error.plain.permissionDenied": "Cowork har ikke lov til at åbne den fil eller mappe på denne computer.",
+  "error.plain.noProvider": "Der er endnu ikke forbundet en AI-tjeneste. Åbn Indstillinger for at forbinde en.",
 }

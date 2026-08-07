@@ -1158,4 +1158,12 @@ export const dict = {
   "task.progress.working": "Jobber med det",
   "task.progress.finishing": "Avslutter",
   "task.progress.steps": "Steg {{done}} av {{total}}",
+
+  "error.plain.apiKey": "KI-tjenesten godtok ikke nøkkelen din. Åpne Innstillinger og koble til tjenesten på nytt.",
+  "error.plain.rateLimit": "KI-tjenesten ber oss roe ned. Vent et minutt og prøv igjen.",
+  "error.plain.quota": "Kontoen din hos KI-tjenesten er tom for kreditt akkurat nå.",
+  "error.plain.offline": "Fikk ikke kontakt med KI-tjenesten. Sjekk internettforbindelsen og prøv igjen.",
+  "error.plain.folderMissing": "Den mappen finnes ikke lenger. Den kan ha blitt flyttet, omdøpt eller slettet.",
+  "error.plain.permissionDenied": "Cowork har ikke lov til å åpne den filen eller mappen på denne datamaskinen.",
+  "error.plain.noProvider": "Ingen KI-tjeneste er koblet til ennå. Åpne Innstillinger for å koble til en.",
 } satisfies Partial<Record<Keys, string>>

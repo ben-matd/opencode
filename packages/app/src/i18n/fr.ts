@@ -1084,4 +1084,12 @@ export const dict = {
   "task.progress.working": "En cours",
   "task.progress.finishing": "Finalisation",
   "task.progress.steps": "Étape {{done}} sur {{total}}",
+
+  "error.plain.apiKey": "Le service d'IA n'a pas accepté votre clé. Ouvrez les Réglages et reconnectez le service.",
+  "error.plain.rateLimit": "Le service d'IA nous demande de ralentir. Attendez une minute et réessayez.",
+  "error.plain.quota": "Votre compte auprès du service d'IA n'a plus de crédit pour le moment.",
+  "error.plain.offline": "Impossible de joindre le service d'IA. Vérifiez votre connexion Internet et réessayez.",
+  "error.plain.folderMissing": "Ce dossier n'existe plus. Il a peut-être été déplacé, renommé ou supprimé.",
+  "error.plain.permissionDenied": "Cowork n'a pas le droit d'ouvrir ce fichier ou ce dossier sur cet ordinateur.",
+  "error.plain.noProvider": "Aucun service d'IA n'est encore connecté. Ouvrez les Réglages pour en connecter un.",
 }

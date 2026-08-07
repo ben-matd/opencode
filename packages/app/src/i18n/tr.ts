@@ -1153,4 +1153,12 @@ export const dict = {
   "task.progress.working": "Üzerinde çalışıyorum",
   "task.progress.finishing": "Tamamlanıyor",
   "task.progress.steps": "Adım {{done}} / {{total}}",
+
+  "error.plain.apiKey": "Yapay zekâ servisi anahtarınızı kabul etmedi. Ayarlar'ı açıp servisi yeniden bağlayın.",
+  "error.plain.rateLimit": "Yapay zekâ servisi yavaşlamamızı istiyor. Bir dakika bekleyip tekrar deneyin.",
+  "error.plain.quota": "Yapay zekâ servisi hesabınızda şu an bakiye kalmamış.",
+  "error.plain.offline": "Yapay zekâ servisine ulaşılamadı. İnternet bağlantınızı kontrol edip tekrar deneyin.",
+  "error.plain.folderMissing": "O klasör artık orada değil. Taşınmış, yeniden adlandırılmış veya silinmiş olabilir.",
+  "error.plain.permissionDenied": "Cowork'ün bu bilgisayarda o dosyayı ya da klasörü açma izni yok.",
+  "error.plain.noProvider": "Henüz bir yapay zekâ servisi bağlanmadı. Bağlamak için Ayarlar'ı açın.",
 } satisfies Partial<Record<Keys, string>>

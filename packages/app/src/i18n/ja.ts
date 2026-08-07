@@ -1063,4 +1063,12 @@ export const dict = {
   "task.progress.working": "作業中です",
   "task.progress.finishing": "仕上げています",
   "task.progress.steps": "ステップ {{done}} / {{total}}",
+
+  "error.plain.apiKey": "AI サービスがキーを受け付けませんでした。設定を開いて、もう一度接続してください。",
+  "error.plain.rateLimit": "AI サービスからペースを落とすよう求められています。1 分ほど待ってから再試行してください。",
+  "error.plain.quota": "AI サービスのアカウントの残高が現在ありません。",
+  "error.plain.offline": "AI サービスに接続できませんでした。インターネット接続を確認して再試行してください。",
+  "error.plain.folderMissing": "そのフォルダはもうありません。移動、名前変更、または削除された可能性があります。",
+  "error.plain.permissionDenied": "このコンピュータで、そのファイルまたはフォルダを開く権限が Cowork にありません。",
+  "error.plain.noProvider": "AI サービスがまだ接続されていません。設定を開いて接続してください。",
 }

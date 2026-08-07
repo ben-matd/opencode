@@ -1147,4 +1147,12 @@ export const dict = {
   "task.progress.working": "Radim na tome",
   "task.progress.finishing": "Završavam",
   "task.progress.steps": "Korak {{done}} od {{total}}",
+
+  "error.plain.apiKey": "AI usluga nije prihvatila vaš ključ. Otvorite Postavke i ponovo povežite uslugu.",
+  "error.plain.rateLimit": "AI usluga traži da usporimo. Sačekajte minut pa pokušajte ponovo.",
+  "error.plain.quota": "Vaš račun kod AI usluge trenutno nema kredita.",
+  "error.plain.offline": "Nije bilo moguće doći do AI usluge. Provjerite internet vezu i pokušajte ponovo.",
+  "error.plain.folderMissing": "Ta mapa više ne postoji. Možda je premještena, preimenovana ili obrisana.",
+  "error.plain.permissionDenied": "Cowork nema dozvolu da otvori tu datoteku ili mapu na ovom računaru.",
+  "error.plain.noProvider": "Nijedna AI usluga još nije povezana. Otvorite Postavke da je povežete.",
 }

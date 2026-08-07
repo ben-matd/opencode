@@ -1121,4 +1121,12 @@ export const dict = {
   "task.progress.working": "正在處理",
   "task.progress.finishing": "正在收尾",
   "task.progress.steps": "第 {{done}} 步，共 {{total}} 步",
+
+  "error.plain.apiKey": "AI 服務未接受你的金鑰。開啟設定並重新連接該服務。",
+  "error.plain.rateLimit": "AI 服務要求我們放慢速度。等一分鐘後再試。",
+  "error.plain.quota": "你的 AI 服務帳戶目前餘額不足。",
+  "error.plain.offline": "無法連線到 AI 服務。請檢查網路連線後重試。",
+  "error.plain.folderMissing": "那個資料夾已經不在了。它可能被移動、重新命名或刪除了。",
+  "error.plain.permissionDenied": "Cowork 沒有權限在這台電腦上開啟該檔案或資料夾。",
+  "error.plain.noProvider": "還沒有連接任何 AI 服務。開啟設定連接一個。",
 } satisfies Partial<Record<Keys, string>>

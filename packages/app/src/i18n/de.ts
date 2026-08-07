@@ -1084,4 +1084,12 @@ export const dict = {
   "task.progress.working": "Ich arbeite daran",
   "task.progress.finishing": "Wird abgeschlossen",
   "task.progress.steps": "Schritt {{done}} von {{total}}",
+
+  "error.plain.apiKey": "Der KI-Dienst hat Ihren Schlüssel nicht akzeptiert. Verbinden Sie den Dienst in den Einstellungen erneut.",
+  "error.plain.rateLimit": "Der KI-Dienst bittet um eine Pause. Warten Sie eine Minute und versuchen Sie es erneut.",
+  "error.plain.quota": "Ihr Konto beim KI-Dienst hat derzeit kein Guthaben mehr.",
+  "error.plain.offline": "Der KI-Dienst war nicht erreichbar. Prüfen Sie Ihre Internetverbindung und versuchen Sie es erneut.",
+  "error.plain.folderMissing": "Diesen Ordner gibt es nicht mehr. Er wurde vielleicht verschoben, umbenannt oder gelöscht.",
+  "error.plain.permissionDenied": "Cowork darf diese Datei oder diesen Ordner auf diesem Computer nicht öffnen.",
+  "error.plain.noProvider": "Es ist noch kein KI-Dienst verbunden. Verbinden Sie einen in den Einstellungen.",
 } satisfies Partial<Record<Keys, string>>

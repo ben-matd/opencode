@@ -29,6 +29,11 @@ export function formatServerError(error: unknown, translate?: Translator, fallba
   const unwrapped = unwrapNamedError(error)
   if (isConfigInvalidErrorLike(unwrapped)) return parseReadableConfigInvalidError(unwrapped, translate)
   if (isProviderModelNotFoundErrorLike(unwrapped)) return parseReadableProviderModelNotFoundError(unwrapped, translate)
+  const plain = plainLanguageErrorKey(unwrapped)
+  if (plain && translate) {
+    const text = translate(plain)
+    if (text && text !== plain) return text
+  }
   if (error instanceof Error && error.message) return error.message
   if (typeof error === "string" && error) return error
   if (fallback) return fallback
@@ -106,4 +111,60 @@ function parseReadableProviderModelNotFoundError(errorInput: ProviderModelNotFou
     )
   }
   return [body, tail].join("\n")
+}
+
+/**
+ * Recognizes the handful of failures that are common and fixable, and says what
+ * to do about them in a sentence. Everything else falls through to the original
+ * message — a wrong plain-language guess is worse than a technical truth.
+ */
+export function plainLanguageErrorKey(error: unknown): string | undefined {
+  const status = statusOf(error)
+  const text = messageOf(error).toLowerCase()
+
+  if (
+    status === 401 ||
+    status === 403 ||
+    /(invalid|incorrect|bad|missing)[_ -]?api[_ -]?key|unauthorized|authentication failed|invalid[_ -]?token/.test(text)
+  )
+    return "error.plain.apiKey"
+  if (status === 429 || /rate[_ -]?limit|too many requests/.test(text)) return "error.plain.rateLimit"
+  if (/quota|insufficient[_ -]?(quota|credit|balance)|billing/.test(text)) return "error.plain.quota"
+  if (/enotfound|econnrefused|etimedout|network error|fetch failed|dns/.test(text)) return "error.plain.offline"
+  if (/enoent|no such file or directory|directory not found/.test(text)) return "error.plain.folderMissing"
+  if (/eacces|eperm|permission denied|operation not permitted/.test(text)) return "error.plain.permissionDenied"
+  if (/no provider|provider not (found|configured)|no models? available/.test(text)) return "error.plain.noProvider"
+  return undefined
+}
+
+function statusOf(error: unknown): number | undefined {
+  if (typeof error !== "object" || error === null) return undefined
+  const value = error as Record<string, unknown>
+  if (typeof value.status === "number") return value.status
+  if (typeof value.statusCode === "number") return value.statusCode
+  const data = value.data
+  if (typeof data === "object" && data !== null && typeof (data as Record<string, unknown>).status === "number")
+    return (data as Record<string, number>).status
+  return undefined
+}
+
+function messageOf(error: unknown): string {
+  if (typeof error === "string") return error
+  if (error instanceof Error) return `${error.name} ${error.message} ${String(error.cause ?? "")}`
+  if (typeof error === "object" && error !== null) {
+    const value = error as Record<string, unknown>
+    const parts = [value.name, value.message, value.code, value._tag].filter((part) => typeof part === "string")
+    const data = value.data
+    if (typeof data === "object" && data !== null) {
+      for (const nested of Object.values(data as Record<string, unknown>))
+        if (typeof nested === "string") parts.push(nested)
+    }
+    if (parts.length) return parts.join(" ")
+    try {
+      return JSON.stringify(error)
+    } catch {
+      return ""
+    }
+  }
+  return ""
 }
